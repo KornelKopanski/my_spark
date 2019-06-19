@@ -58,7 +58,7 @@ user_sum.food_count(all_purchases, tenant, food_sum)
 # Sumowanie zakupów przemysłowych.
 user_sum.industrial_count(all_purchases,tenant,industrial_sum)
 
-# Cala lista.
+
 # Sumowanie wszystkich zakupow.
 shopping_list = [sum(food_sum) + sum(industrial_sum)]
 print("Koszt zakupów lokatora ", tenant," : ", str(sum(shopping_list)))
