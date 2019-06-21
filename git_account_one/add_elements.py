@@ -21,6 +21,30 @@ def add_tenant(main_catalog,user,category):
     main_catalog.setdefault(user,category)
 
 
+def choice_categorys(choice_category,product,groceries,price,manufactured_goods):
+    # Tworzę instrukcję warunkową "if" która zapisze produkt w kategorii,
+    # która wcześniej została określona przez użytkownika.
+    if choice_category == "1":
+        # spozywcze
+        if product in groceries:
+            # Dodaję cenę produktu do produktu znajdującego się już w bazie.
+            groceries[product].append(price)
+        else:
+            # Tworzę nowy produkt, jeśli nie istnieje jeszcze w zbiorze.
+            groceries.setdefault(product, [price])
+    elif choice_category == "2":
+        # przemysłowe
+        if product in manufactured_goods:
+            # Dodaję cenę produktu do produktu znajdującego się już w bazie.
+            manufactured_goods[product].append(price)
+        else:
+            # Tworzę nowy produkt, jeśli nie istnieje jeszcze w zbiorze.
+            manufactured_goods.setdefault(product, [price])
+    else:
+        # Informacja o nie poprawnym wyborze.
+        print("Nie poprawny wybór, wpisz: '1' lub '2'!")
+
+
 # Tworzę funkcję która umożliwi dodanie produktu do konta użytkownika,
 # uwzględniając wybór kategorii.
 def add_product(main_catalog,user):
@@ -39,31 +63,5 @@ def add_product(main_catalog,user):
     groceries = main_catalog[user]["spożywcze"]
     manufactured_goods = main_catalog[user]["przemysłowe"]
 
+    choice_categorys(choice_category,product,groceries,price,manufactured_goods)
 
-
-
-    # Tworzę instrukcję warunkową "if" która zapisze produkt w kategorii,
-    # która wcześniej została określona przez użytkownika.
-    if choice_category == "1":
-        # spozywcze
-        if product in groceries:
-
-            # Dodaję cenę produktu do produktu znajdującego się już w bazie.
-            groceries[product].append(price)
-        else:
-            # Tworzę nowy produkt, jeśli nie istnieje jeszcze w zbiorze.
-            groceries.setdefault(product, [price])
-
-    elif choice_category == "2":
-        # przemysłowe
-        if product in manufactured_goods:
-
-            # Dodaję cenę produktu do produktu znajdującego się już w bazie.
-            manufactured_goods[product].append(price)
-        else:
-            # Tworzę nowy produkt, jeśli nie istnieje jeszcze w zbiorze.
-            manufactured_goods.setdefault(product, [price])
-
-    else:
-        # Informacja o nie poprawnym wyborze.
-        print("Nie poprawny wybór, wpisz: '1' lub '2'!")
