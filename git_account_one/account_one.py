@@ -20,6 +20,8 @@ all_purchases = {}
 # jego prywatnej listy zakupów do jego imienia.
 tenant = input("Wprowadź imię: ")
 
+person = user_sum.UserSum(all_purchases,tenant,food_sum,industrial_sum)
+
 # Tworzę kategorię zakupów.
 food_or_industrial = {"spożywcze":{},
                      "przemysłowe":{}}
@@ -30,10 +32,12 @@ add_elements.more_products(all_purchases,tenant)
 
 print(all_purchases)
 
+
+
 # Sumowanie zakupów spożywczych.
-user_sum.food_count(all_purchases, tenant, food_sum)
+person.food_count()
 # Sumowanie zakupów przemysłowych.
-user_sum.industrial_count(all_purchases,tenant,industrial_sum)
+person.industrial_count()
 
 # Sumowanie wszystkich zakupow.
 shopping_list = [sum(food_sum) + sum(industrial_sum)]
