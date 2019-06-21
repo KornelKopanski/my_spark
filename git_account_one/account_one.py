@@ -21,7 +21,7 @@ all_purchases = {}
 tenant = input("Wprowadź imię: ")
 
 
-person_sum = user_sum.UserSum(all_purchases,tenant,food_sum,industrial_sum)
+person_sum = user_sum.UserSum(all_purchases,tenant,food_sum,industrial_sum,all_purchases)
 
 # Tworzę kategorię zakupów.
 food_or_industrial = {"spożywcze":{},
@@ -33,7 +33,7 @@ elements_add.add_tenant()
 
 elements_add.more_products()
 
-print(all_purchases)
+person_sum.show_info()
 
 # Sumowanie zakupów spożywczych.
 person_sum.food_count()
