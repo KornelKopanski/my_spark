@@ -1,7 +1,3 @@
-
-
-
-
 # Tworzę funkcję która doda kolejnego lokatora.
 def add_tenant(main_catalog,user,category):
 
@@ -19,7 +15,6 @@ def add_tenant(main_catalog,user,category):
     # Jeżeli dany użytkownik już znajduje się w głownym katalogu,
     # funkcja pozostawi go bez zmian.
     main_catalog.setdefault(user,category)
-
 
 def choice_categorys(choice_category,product,groceries,price,manufactured_goods):
     # Tworzę instrukcję warunkową "if" która zapisze produkt w kategorii,
@@ -44,7 +39,6 @@ def choice_categorys(choice_category,product,groceries,price,manufactured_goods)
         # Informacja o nie poprawnym wyborze.
         print("Nie poprawny wybór, wpisz: '1' lub '2'!")
 
-
 # Tworzę funkcję która umożliwi dodanie produktu do konta użytkownika,
 # uwzględniając wybór kategorii.
 def add_product(main_catalog,user):
@@ -65,3 +59,10 @@ def add_product(main_catalog,user):
 
     choice_categorys(choice_category,product,groceries,price,manufactured_goods)
 
+#Tworzę funkcję z pętlą "while" aby móc dodać tyle produktów ilę chcę.
+def more_products(all_purchases,name_tenant):
+
+    choice = ""
+    while choice != "0":
+        add_product(all_purchases,name_tenant)
+        choice = input("Aby zakończyć wpisz '0' lub naciśnij 'enter' aby kontynuować!")
