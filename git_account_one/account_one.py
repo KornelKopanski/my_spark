@@ -42,7 +42,7 @@ person_sum.industrial_count()
 
 # Sumowanie wszystkich zakupow.
 shopping_list = [sum(food_sum) + sum(industrial_sum)]
-print("Koszt zakupów lokatora ", tenant," : ", str(sum(shopping_list)))
+print("Koszt zakupów lokatora: {tenant} = {shopping_list} zł".format(tenant=tenant,shopping_list=str(sum(shopping_list))))
 
 
 

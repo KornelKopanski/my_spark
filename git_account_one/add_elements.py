@@ -12,10 +12,10 @@ class Add_AO:
     def add_tenant(self):
 
         if self.user in self.main_catalog:
-            print("Użytkownik o nazwie: ", "'", self.user, "'", " istnieje już w Katalogu Głównym!")
+            print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=self.user))
             print("Zmień login Użytkownika!")
         else:
-            print("Pomyślnie utworzono konto o nazwie: ", self.user, "!")
+            print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
         self.main_catalog.setdefault(self.user, self.category)
 
     def _choice_categorys(self,choice_category, product, groceries, price, manufactured_goods):
@@ -42,7 +42,7 @@ class Add_AO:
         print("")
         print("Wybierz kategorię produktu!")
         print("Spożywcze wpisz: '1'")
-        print("Przemysłowe pwisz: '2'")
+        print("Przemysłowe wpisz: '2'")
         choice_category = input()
 
         product = input("Produkt: ")
