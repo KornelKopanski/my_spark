@@ -30,7 +30,9 @@ class UserSum:
             for category in self.all_purchases[user]:
                 print("\t\t\t\t- {}".format(category))
                 for product in self.all_purchases[user][category]:
-                    print("\t\t\t\t\t\t- {} = {} zł".format(product, self.all_purchases[user][category][product]))
+                    print("\t\t\t\t\t\t- {}".format(product))
+                    for price in self.all_purchases[user][category][product]:
+                        print("\t\t\t\t\t\t\t\t- {} zł".format(price))
 
 
 
