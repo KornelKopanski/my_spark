@@ -59,7 +59,8 @@ class AdTenant:
         self.main_catalog = main_catalog
         self.category = category
 
-    # Tworzę funkcję która doda kolejnego lokatora.
+    # Tworzę funkcję która sprawdzi czy lokator którego chcę dodać,
+    # jest już dodany. Jeśli nie jest zostanie dodany.
     def add_tenant(self):
 
         while True:

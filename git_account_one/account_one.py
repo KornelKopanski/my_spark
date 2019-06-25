@@ -22,6 +22,7 @@ all_purchases = {}
 food_or_industrial = {"spożywcze":{},
                      "przemysłowe":{}}
 
+
 tenant = add_elements.AdTenant(all_purchases,food_or_industrial)
 
 tenant.add_tenant()
