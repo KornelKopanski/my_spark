@@ -8,16 +8,6 @@ class Add_AO:
         self.user = user
         self.category = category
 
-    # Tworzę funkcję która doda kolejnego lokatora.
-    def add_tenant(self):
-
-        if self.user in self.main_catalog:
-            print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=self.user))
-            print("Zmień login Użytkownika!")
-        else:
-            print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
-        self.main_catalog.setdefault(self.user, self.category)
-
     def _choice_categorys(self,choice_category, product, groceries, price, manufactured_goods):
 
         if choice_category == "1":
@@ -35,7 +25,6 @@ class Add_AO:
         else:
             print("Nie poprawny wybór, wpisz: '1' lub '2'!")
 
-
     # Tworzę funkcję która umożliwi dodanie produktu do konta użytkownika,
     # uwzględniając wybór kategorii.
     def _add_product(self):
@@ -47,7 +36,6 @@ class Add_AO:
 
         product = input("Produkt: ")
         price = float(input("Cena: "))
-
 
         groceries = self.main_catalog[self.user]["spożywcze"]
         manufactured_goods = self.main_catalog[self.user]["przemysłowe"]
@@ -61,4 +49,28 @@ class Add_AO:
         while choice != "0":
             Add_AO._add_product(self)
             choice = input("Aby zakończyć wpisz '0' lub naciśnij 'enter' aby kontynuować!")
+
+class AdTenant:
+
+    x = []
+
+    def __init__(self ,main_catalog, category):
+
+        self.main_catalog = main_catalog
+        self.category = category
+
+    # Tworzę funkcję która doda kolejnego lokatora.
+    def add_tenant(self):
+
+        while True:
+            user = input("Wprowadź imię: ")
+
+            if user in self.main_catalog:
+                print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=user))
+                print("Zmień login Użytkownika!")
+            else:
+                self.main_catalog.setdefault(user, self.category)
+                print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=user))
+                AdTenant.x.append(user)
+                break
 
