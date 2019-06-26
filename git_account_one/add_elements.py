@@ -1,5 +1,4 @@
 
-
 class Add_AO:
 
     def __init__(self ,main_catalog, user, category):
@@ -74,4 +73,6 @@ class AdTenant:
                 print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=user))
                 AdTenant.x.append(user)
                 break
+
+
 
