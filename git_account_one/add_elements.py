@@ -49,6 +49,17 @@ class Add_AO:
             Add_AO._add_product(self)
             choice = input("Aby zakończyć wpisz '0' lub naciśnij 'enter' aby kontynuować!")
 
+    def show_info(self):
+        for user in self.main_catalog:
+            print(f"Lokator '{user}':")
+            for category in self.main_catalog[user]:
+                print("\t\t\t\t- {}".format(category))
+                for product in self.main_catalog[user][category]:
+                    print("\t\t\t\t\t\t- {}".format(product))
+                    for price in self.main_catalog[user][category][product]:
+                        print("\t\t\t\t\t\t\t\t- {} zł".format(price))
+
+
 class AdTenant:
 
 
