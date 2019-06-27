@@ -14,7 +14,7 @@ class UserSum:
         category = self.main_catalog[self.user]["spożywcze"]
         for i in category.values():
             self.sum_list_food.append(sum(i))
-        print("Zakupy spożywcze suma: {} zł".format(str(sum(self.sum_list_food))))
+        print("Suma zakupów spożywczych lokatora '{tenant}': {} zł".format(str(sum(self.sum_list_food)),tenant=self.user))
 
 
     def industrial_count(self):
@@ -22,7 +22,7 @@ class UserSum:
         category = self.main_catalog[self.user]["przemysłowe"]
         for i in category.values():
             self.sum_list_industrial.append(sum(i))
-        print("Zakupy przemysłowe suma: {} zł".format(str(sum(self.sum_list_industrial))))
+        print("Suma zakupów przemysłowych lokatora '{tenant}': {} zł".format(str(sum(self.sum_list_industrial)),tenant=self.user))
 
     def all_sum(self):
 
