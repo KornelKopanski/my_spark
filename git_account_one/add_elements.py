@@ -51,12 +51,13 @@ class Add_AO:
 
 class AdTenant:
 
-    x = []
+
 
     def __init__(self ,main_catalog, category):
 
         self.main_catalog = main_catalog
         self.category = category
+        self.user = None
 
     # Tworzę funkcję która sprawdzi czy lokator którego chcę dodać,
     # jest już dodany. Jeśli nie jest zostanie dodany.
@@ -69,9 +70,9 @@ class AdTenant:
                 print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=user))
                 print("Zmień login Użytkownika!")
             else:
-                self.main_catalog.setdefault(user, self.category)
-                print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=user))
-                AdTenant.x.append(user)
+                self.user = user
+                self.main_catalog.setdefault(self.user, self.category)
+                print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
                 break
 
 

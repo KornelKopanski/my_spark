@@ -17,21 +17,24 @@ industrial_sum = []
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
 
-
 # Tworzę kategorię zakupów.
-food_or_industrial = {"spożywcze":{},
-                     "przemysłowe":{}}
+food_or_industrial = None
+
 
 end = ""
 while end != "0":
-    tenant = add_elements.AdTenant(all_purchases,food_or_industrial)
+
+    # Tworzę kategorię zakupów.
+    food_or_industrial = {"spożywcze": {},
+                          "przemysłowe": {}}
+
+    tenant = add_elements.AdTenant(all_purchases, food_or_industrial)
 
     tenant.add_tenant()
 
-    person_sum = user_sum.UserSum(all_purchases,tenant.x[0],food_sum,industrial_sum,all_purchases)
+    person_sum = user_sum.UserSum(all_purchases,tenant.user,food_sum,industrial_sum,all_purchases)
 
-
-    elements_add = add_elements.Add_AO(all_purchases,tenant.x[0],food_or_industrial)
+    elements_add = add_elements.Add_AO(all_purchases,tenant.user,food_or_industrial)
 
     elements_add.more_products()
 
@@ -44,7 +47,7 @@ while end != "0":
 
     # Sumowanie wszystkich zakupow.
     shopping_list = [sum(food_sum) + sum(industrial_sum)]
-    print("Koszt zakupów lokatora '{tenant}': {shopping_list} zł".format(tenant=tenant.x[0],shopping_list=str(sum(shopping_list))))
+    print("Koszt zakupów lokatora '{tenant}': {shopping_list} zł".format(tenant=tenant.user,shopping_list=str(sum(shopping_list))))
 
     end = input("Aby zakonczyc wpisz '0' w przeciwnym razie wciśnij 'enter'.")
 
