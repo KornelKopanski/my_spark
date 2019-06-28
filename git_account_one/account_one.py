@@ -30,7 +30,7 @@ while end != "0":
     # Wypisuję wszystkie dane
     elements_add.show_info()
 
-    end = input("Aby zakonczyc wpisz '0' w przeciwnym razie wciśnij 'enter'.")
+    end = input("Aby dodać nowego lokatora wciśnij 'enter', aby zakończyć wpisz '0'.")
 
 for user in all_purchases:
 
