@@ -28,10 +28,9 @@ class Add_AO:
     # uwzględniając wybór kategorii.
     def _add_product(self):
         print("")
-        print("Wybierz kategorię produktu!")
-        print("Spożywcze wpisz: '1'")
-        print("Przemysłowe wpisz: '2'")
-        choice_category = input()
+        print("\t\t\t\tWybierz kategorię produktu!\n")
+        print("Spożywcze wpisz: '1'\t\t\t\t\t\tPrzemysłowe wpisz: '2'")
+        choice_category = input("\t\t\t\t\t\t")
 
         product = input("Produkt: ")
         price = float(input("Cena: "))
