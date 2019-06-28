@@ -33,12 +33,20 @@ class Add_AO:
         choice_category = input("\t\t\t\t\t\t")
 
         product = input("Produkt: ")
-        price = float(input("Cena: "))
+
+
+        while True:
+
+            price = input("Cena: ")
+            if price.isalpha():
+                print("Nie poprawny typ danych, wpisz cyfrę!")
+            else:
+                break
 
         groceries = self.main_catalog[self.user]["spożywcze"]
         manufactured_goods = self.main_catalog[self.user]["przemysłowe"]
 
-        Add_AO._choice_categorys(self,choice_category, product, groceries, price, manufactured_goods)
+        Add_AO._choice_categorys(self,choice_category, product, groceries, float(price), manufactured_goods)
 
     # Tworzę funkcję z pętlą "while" aby móc dodać tyle produktów ilę chcę.
     def more_products(self):
