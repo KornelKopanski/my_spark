@@ -21,8 +21,7 @@ class Add_AO:
                 manufactured_goods[product].append(price)
             else:
                 manufactured_goods.setdefault(product, [price])
-        else:
-            print("Nie poprawny wybór, wpisz: '1' lub '2'!")
+
 
     # Tworzę funkcję która umożliwi dodanie produktu do konta użytkownika,
     # uwzględniając wybór kategorii.
@@ -30,7 +29,16 @@ class Add_AO:
         print("")
         print("\t\t\t\tWybierz kategorię produktu!\n")
         print("Spożywcze wpisz: '1'\t\t\t\t\t\tPrzemysłowe wpisz: '2'")
-        choice_category = input("\t\t\t\t\t\t")
+
+        while True:
+
+            choice_category = input()
+            if choice_category == "1":
+                break
+            elif choice_category == "2":
+                break
+            else:
+                print("Nie poprawny typ danych, wpisz cyfrę!")
 
         product = input("Produkt: ")
 
