@@ -31,7 +31,6 @@ class Add_AO:
         print("Spożywcze wpisz: '1'\t\t\t\t\t\tPrzemysłowe wpisz: '2'")
 
         while True:
-
             choice_category = input()
             if choice_category != "1" and choice_category != "2":
                 print("Nie poprawny wybór, wpisz '1' lub '2'!")
@@ -40,9 +39,7 @@ class Add_AO:
 
         product = input("Produkt: ")
 
-
         while True:
-
             price = input("Cena: ")
             if price.isalpha():
                 print("Nie poprawny typ danych, wpisz cyfrę!")

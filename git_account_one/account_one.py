@@ -34,7 +34,7 @@ while end != "0":
 
 for user in all_purchases:
 
-    person_sum = user_sum.UserSum(all_purchases,user, all_purchases)
+    person_sum = user_sum.UserSum(user, all_purchases)
     # Sumowanie zakupów spożywczych.
     person_sum.food_count()
     # Sumowanie zakupów przemysłowych.

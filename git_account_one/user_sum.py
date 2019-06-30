@@ -1,9 +1,8 @@
 
 class UserSum:
 
-    def __init__(self ,main_catalog ,user ,all_purchases):
+    def __init__(self ,user ,all_purchases):
 
-        self.main_catalog = main_catalog
         self.user = user
         self.sum_list_food = []
         self.sum_list_industrial = []
@@ -11,7 +10,7 @@ class UserSum:
 
     def food_count(self):
 
-        category = self.main_catalog[self.user]["spożywcze"]
+        category = self.all_purchases[self.user]["spożywcze"]
         for i in category.values():
             self.sum_list_food.append(sum(i))
         print("\nSuma zakupów spożywczych lokatora '{tenant}': {} zł".format(str(sum(self.sum_list_food)),tenant=self.user))
@@ -19,7 +18,7 @@ class UserSum:
 
     def industrial_count(self):
 
-        category = self.main_catalog[self.user]["przemysłowe"]
+        category = self.all_purchases[self.user]["przemysłowe"]
         for i in category.values():
             self.sum_list_industrial.append(sum(i))
         print("\nSuma zakupów przemysłowych lokatora '{tenant}': {} zł".format(str(sum(self.sum_list_industrial)),tenant=self.user))
