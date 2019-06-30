@@ -33,12 +33,10 @@ class Add_AO:
         while True:
 
             choice_category = input()
-            if choice_category == "1":
-                break
-            elif choice_category == "2":
-                break
+            if choice_category != "1" and choice_category != "2":
+                print("Nie poprawny wybór, wpisz '1' lub '2'!")
             else:
-                print("Nie poprawny typ danych, wpisz cyfrę!")
+                break
 
         product = input("Produkt: ")
 
