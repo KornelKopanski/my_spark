@@ -96,5 +96,30 @@ class AdTenant:
                 print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
                 break
 
+    def register(self):
+        keys_tenant = []
+        for you_key in self.main_catalog:
+            for name in self.main_catalog[you_key]:
+                keys_tenant.append(name)
+        while True:
+            user = input("Podaj nazwę użytkownika: ")
+            if user in keys_tenant:
+                print("Lokator o podanej nazwie już istnieje w katalogu,"
+                      "zmień nazwę lokatora!")
+            else:
+                break
+
+        while True:
+            password = input("Podaj hasło: ")
+            if len(password) < 8:
+                print("Za krótkie hasło, podaj hasło!")
+            else:
+                break
+
+        te_ke = (user, password)
+        self.main_catalog.setdefault(te_ke, {user: {}})
+
+
+
 
 
