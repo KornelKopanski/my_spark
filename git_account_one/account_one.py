@@ -22,7 +22,7 @@ while end != "0":
 
     tenant = add_elements.AdTenant(all_purchases, food_or_industrial)
 
-    tenant.add_tenant()
+    tenant.register()
 
     elements_add = add_elements.Add_AO(all_purchases,tenant.user,food_or_industrial)
 

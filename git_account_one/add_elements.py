@@ -99,8 +99,7 @@ class AdTenant:
     def register(self):
         keys_tenant = []
         for you_key in self.main_catalog:
-            for name in self.main_catalog[you_key]:
-                keys_tenant.append(name)
+            keys_tenant.append(you_key[0])
         while True:
             user = input("Podaj nazwę użytkownika: ")
             if user in keys_tenant:
@@ -116,10 +115,9 @@ class AdTenant:
             else:
                 break
 
-        te_ke = (user, password)
-        self.main_catalog.setdefault(te_ke, {user: {}})
-
-
+        key_user = (user, password)
+        self.main_catalog.setdefault(key_user, self.category)
+        self.user = key_user
 
 
 
