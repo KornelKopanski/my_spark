@@ -105,5 +105,24 @@ class AdTenant:
         self.main_catalog.setdefault(key_user, self.category)
         self.user = key_user
 
+    def login(self):
+
+        while True:
+            name = ""
+            while not name:
+                name = input("Podaj imię: ")
+
+            password = ""
+            while not password:
+                password = input("Podaj hasło: ")
+
+            name_and_password = (name,password)
+
+            if name_and_password == self.user:
+                print("Pomyślnie zalogowano!")
+                break
+            else:
+                print("Nie poprawne hasło lub login! Popraw dane!")
+
 
 
