@@ -22,7 +22,6 @@ class Add_AO:
             else:
                 manufactured_goods.setdefault(product, [price])
 
-
     # Tworzę funkcję która umożliwi dodanie produktu do konta użytkownika,
     # uwzględniając wybór kategorii.
     def _add_product(self):
