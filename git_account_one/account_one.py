@@ -7,9 +7,19 @@
 # a która sama powinna otrzymać zwrot pieniedzy.
 
 from git_account_one import add_elements,user_sum
+import json
 
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
+
+with open("AccountOAll.json","r")  as my_file:
+    lista = json.load(my_file)
+
+for i in lista:
+    key = i
+    value = lista[i]
+    all_purchases[key] = value
+
 
 # Tworzę kategorię zakupów.
 food_or_industrial = None
@@ -31,6 +41,8 @@ while end != "0":
     elements_add.show_info()
 
     end = input("Aby dodać nowego lokatora wciśnij 'enter', aby zakończyć wpisz '0'.")
+
+
 
 for user in all_purchases:
 
