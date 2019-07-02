@@ -20,7 +20,6 @@ for i in lista:
     value = lista[i]
     all_purchases[key] = value
 
-
 # Tworzę kategorię zakupów.
 food_or_industrial = None
 
@@ -32,7 +31,7 @@ while end != "0":
 
     tenant = add_elements.AdTenant(all_purchases, food_or_industrial)
 
-    tenant.register()
+    tenant.add_tenant()
 
     elements_add = add_elements.Add_AO(all_purchases,tenant.user,food_or_industrial)
 

@@ -61,7 +61,7 @@ class Add_AO:
 
     def show_info(self):
         for user in self.main_catalog:
-            print(f"Lokator '{user[0]}':")
+            print(f"Lokator '{user}':")
             for category in self.main_catalog[user]:
                 print("\t\t\t\t- {}".format(category))
                 for product in self.main_catalog[user][category]:
@@ -80,49 +80,21 @@ class AdTenant:
         self.category = category
         self.user = None
 
-
-
-    def register(self):
-        keys_tenant = []
-        for you_key in self.main_catalog:
-            keys_tenant.append(you_key[0])
-        while True:
-            user = input("Podaj nazwę użytkownika: ")
-            if user in keys_tenant:
-                print("Lokator o podanej nazwie już istnieje w katalogu,"
-                      "zmień nazwę lokatora!")
-            else:
-                break
+    # Tworzę funkcję która sprawdzi czy lokator którego chcę dodać,
+    # jest już dodany. Jeśli nie jest zostanie dodany.
+    def add_tenant(self):
 
         while True:
-            password = input("Podaj hasło: ")
-            if len(password) < 8:
-                print("Za krótkie hasło, podaj hasło!")
+            user = input("Wprowadź imię: ")
+
+            if user in self.main_catalog:
+                print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=user))
+                print("Zmień login Użytkownika!")
             else:
+                self.user = user
+                self.main_catalog.setdefault(self.user, self.category)
+                print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
                 break
-
-        key_user = (user, password)
-        self.main_catalog.setdefault(key_user, self.category)
-        self.user = key_user
-
-    def login(self):
-
-        while True:
-            name = ""
-            while not name:
-                name = input("Podaj imię: ")
-
-            password = ""
-            while not password:
-                password = input("Podaj hasło: ")
-
-            name_and_password = (name,password)
-
-            if name_and_password == self.user:
-                print("Pomyślnie zalogowano!")
-                break
-            else:
-                print("Nie poprawne hasło lub login! Popraw dane!")
 
 
 
