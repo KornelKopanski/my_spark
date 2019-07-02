@@ -42,7 +42,8 @@ while end != "0":
 
     end = input("Aby dodać nowego lokatora wciśnij 'enter', aby zakończyć wpisz '0'.")
 
-
+with open("AccountOAll.json","w+")  as my_file:
+    json.dump(all_purchases,my_file)
 
 for user in all_purchases:
 
