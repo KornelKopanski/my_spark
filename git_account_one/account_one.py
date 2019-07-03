@@ -12,6 +12,11 @@ import json
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
 
+# Zapis do pliku bieżącego stanu
+with open("AccountOAll.json","w")  as my_file:
+    json.dump(all_purchases,my_file)
+
+
 # Odczyt z pliku
 def read_all_purchases():
     with open("AccountOAll.json","r")  as my_file:
@@ -45,6 +50,7 @@ while end != "0":
 
     end = input("Aby dodać nowego lokatora wciśnij 'enter', aby zakończyć wpisz '0'.")
 
+# końcowy zapis do pliku
 with open("AccountOAll.json","w+")  as my_file:
     json.dump(all_purchases,my_file)
 
