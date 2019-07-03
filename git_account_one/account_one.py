@@ -12,6 +12,9 @@ import json
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
 
+# Tworzę zmienną zawierającą sumę zakupów, wszystkich lokatorów.
+sum_all_tenants = []
+
 # opcja czyszczenia pliku.
 while True:
     clear_all_purchases = input("Aby wyczyścić plik wpisz 'tak',"
@@ -71,6 +74,19 @@ for user in all_purchases:
     person_sum.industrial_count()
     # Sumowanie wszystkich
     person_sum.all_sum()
+
+def mechanism_sum_tenant():
+    for user in all_purchases:
+
+        tenant_sum = user_sum.TenantSum(user,all_purchases)
+        tenant_sum.tenant_food_count()
+        tenant_sum.tenant_industrial_count()
+        tenant_sum.tenant_all_sum()
+        for i in tenant_sum.shopping_list:
+            sum_all_tenants.append(i)
+
+
+    print(sum(sum_all_tenants))
 
 
 

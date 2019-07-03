@@ -27,10 +27,27 @@ class UserSum:
     def all_sum(self):
 
         # Sumowanie wszystkich zakupow.
-        shopping_list = [sum(self.sum_list_food) + sum(self.sum_list_industrial)]
+        self.shopping_list = [sum(self.sum_list_food) + sum(self.sum_list_industrial)]
         print("\nKoszt zakupów lokatora '{tenant}': {shopping_list} zł".format(tenant=self.user,
-                                                                             shopping_list=str(sum(shopping_list))))
+                                                                             shopping_list=str(sum(self.shopping_list))))
         print("-------------------------------------------------------------")
+
+class TenantSum(UserSum):
+
+    def tenant_food_count(self):
+        category = self.all_purchases[self.user]["spożywcze"]
+        for i in category.values():
+            self.sum_list_food.append(sum(i))
+
+    def tenant_industrial_count(self):
+        category = self.all_purchases[self.user]["przemysłowe"]
+        for i in category.values():
+            self.sum_list_industrial.append(sum(i))
+
+    def tenant_all_sum(self):
+        # Sumowanie wszystkich zakupow.
+        self.shopping_list = [sum(self.sum_list_food) + sum(self.sum_list_industrial)]
+
 
 
 
