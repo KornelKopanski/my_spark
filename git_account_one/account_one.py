@@ -12,6 +12,19 @@ import json
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
 
+# opcja czyszczenia pliku.
+while True:
+    clear_all_purchases = input("Aby wyczyścić plik wpisz 'tak',"
+                                "w przeciwnym razie wciśnij 'enter'.")
+    if clear_all_purchases == "tak":
+        # końcowy zapis do pliku
+        with open("AccountOAll.json", "w")  as my_file:
+            json.dump(all_purchases, my_file)
+        break
+    else:
+        break
+
+
 # Odczyt z pliku
 def read_all_purchases():
     with open("AccountOAll.json","r")  as my_file:
@@ -58,6 +71,8 @@ for user in all_purchases:
     person_sum.industrial_count()
     # Sumowanie wszystkich
     person_sum.all_sum()
+
+
 
 
 

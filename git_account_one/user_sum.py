@@ -7,6 +7,7 @@ class UserSum:
         self.sum_list_food = []
         self.sum_list_industrial = []
         self.all_purchases = all_purchases
+        self.shopping_list = None
 
     def food_count(self):
 
