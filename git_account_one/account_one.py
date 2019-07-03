@@ -12,13 +12,17 @@ import json
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
 
-with open("AccountOAll.json","r")  as my_file:
-    lista = json.load(my_file)
+# Odczyt z pliku
+def read_all_purchases():
+    with open("AccountOAll.json","r")  as my_file:
+        lista = json.load(my_file)
 
-for i in lista:
-    key = i
-    value = lista[i]
-    all_purchases[key] = value
+    for i in lista:
+        key = i
+        value = lista[i]
+        all_purchases[key] = value
+
+read_all_purchases()
 
 # Tworzę kategorię zakupów.
 food_or_industrial = None
