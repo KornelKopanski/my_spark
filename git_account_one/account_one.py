@@ -6,11 +6,13 @@
 # I sprawdza która osoba musi oddać pieniądze innym współlokatorom,
 # a która sama powinna otrzymać zwrot pieniedzy.
 
-from git_account_one import add_elements,user_sum
+from git_account_one import add_elements,user_sum,register_and_login
 import json
 
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
 all_purchases = {}
+# Tworzę słownik w którym będą gromadzone dane rejestracyjne lokatorów.
+register_tenants = {}
 
 # Tworzę zmienną zawierającą sumę zakupów, wszystkich lokatorów.
 sum_all_tenants = []
@@ -27,6 +29,17 @@ while True:
     else:
         break
 
+# Odczyt z pliku rejestracji
+def registerAccountO():
+    with open("registerAccountO.json","r")  as my_file:
+        lista = json.load(my_file)
+
+    for i in lista:
+        key = i
+        value = lista[i]
+        register_tenants[key] = value
+
+registerAccountO()
 
 # Odczyt z pliku
 def read_all_purchases():
@@ -43,17 +56,18 @@ read_all_purchases()
 # Tworzę kategorię zakupów.
 food_or_industrial = None
 
+
+
 end = ""
 while end != "0":
 
     food_or_industrial = {"spożywcze": {},
                           "przemysłowe": {}}
 
-    tenant = add_elements.AdTenant(all_purchases, food_or_industrial)
+    tenats = register_and_login.RegisterLoginTenant(all_purchases, food_or_industrial, register_tenants)
+    tenats.login_or_register(tenats)
 
-    tenant.add_tenant()
-
-    elements_add = add_elements.Add_AO(all_purchases,tenant.user,food_or_industrial)
+    elements_add = add_elements.Add_AO(all_purchases,tenats.user,food_or_industrial)
 
     elements_add.more_products()
     # Wypisuję wszystkie dane
@@ -64,6 +78,11 @@ while end != "0":
 # końcowy zapis do pliku
 with open("AccountOAll.json","w")  as my_file:
     json.dump(all_purchases,my_file)
+
+# końcowy zapis do pliku rejestracji
+with open("registerAccountO.json","w")  as my_file:
+    json.dump(register_tenants,my_file)
+
 
 for user in all_purchases:
 
@@ -86,7 +105,6 @@ def mechanism_sum_tenant():
             sum_all_tenants.append(i)
 
 
-    print(sum(sum_all_tenants))
 
 mechanism_sum_tenant()
 

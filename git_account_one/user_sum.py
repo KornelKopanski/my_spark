@@ -35,11 +35,13 @@ class UserSum:
 class TenantSum(UserSum):
 
     def tenant_food_count(self):
+
         category = self.all_purchases[self.user]["spożywcze"]
         for i in category.values():
             self.sum_list_food.append(sum(i))
 
     def tenant_industrial_count(self):
+
         category = self.all_purchases[self.user]["przemysłowe"]
         for i in category.values():
             self.sum_list_industrial.append(sum(i))

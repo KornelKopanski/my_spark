@@ -69,31 +69,3 @@ class Add_AO:
                         print("\t\t\t\t\t\t\t\t- {} zł".format(price))
 
 
-class AdTenant:
-
-
-
-    def __init__(self ,main_catalog, category):
-
-        self.main_catalog = main_catalog
-        self.category = category
-        self.user = None
-
-    # Tworzę funkcję która sprawdzi czy lokator którego chcę dodać,
-    # jest już dodany. Jeśli nie jest zostanie dodany.
-    def add_tenant(self):
-
-        while True:
-            user = input("Wprowadź imię: ")
-
-            if user in self.main_catalog:
-                print("Użytkownik o nazwie: '{user}' istnieje już w Katalogu Głównym!".format(user=user))
-                print("Zmień login Użytkownika!")
-            else:
-                self.user = user
-                self.main_catalog.setdefault(self.user, self.category)
-                print("Pomyślnie utworzono konto o nazwie: {user}!".format(user=self.user))
-                break
-
-
-
