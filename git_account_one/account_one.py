@@ -104,13 +104,33 @@ def mechanism_sum_tenant():
         for i in tenant_sum.shopping_list:
             sum_all_tenants.append(i)
 
+    # dzielenie łącznych zakupów po równo na każdego lokatora
+    one_tenant = sum(sum_all_tenants) // len(all_purchases)
+
+    for user in all_purchases:
+
+        tenant_sum = user_sum.TenantSum(user,all_purchases)
+        tenant_sum.tenant_food_count()
+        tenant_sum.tenant_industrial_count()
+        tenant_sum.tenant_all_sum()
+        for i in tenant_sum.shopping_list:
+            sum_all_tenants.append(i)
+
+            if one_tenant > i:
+                print(f"{user}, wrzuć do skarbonki {one_tenant-i} zł.\n")
+            elif one_tenant < i:
+                print(f"{user}, weź ze skarbonki {i - one_tenant} zł.\n")
+            else:
+                print(f"{user}, jesteś rozliczony!\n")
+    print("----------------------------------------------------")
+    print(f"Średni koszt na lokatora  wynosi = {one_tenant}")
+
+
+
 
 
 mechanism_sum_tenant()
 
-# dzielenie łącznych zakupów po równo na każdego lokatora
-one_tenant = sum(sum_all_tenants)//len(all_purchases)
-print(one_tenant)
 
 
 
