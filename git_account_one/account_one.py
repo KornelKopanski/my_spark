@@ -126,10 +126,167 @@ def mechanism_sum_tenant():
     print(f"Średni koszt na lokatora  wynosi = {one_tenant}")
 
 
-
-
-
 mechanism_sum_tenant()
+
+
+
+
+
+# from tkinter import *
+# from tkinter import messagebox
+# from tkinter.ttk import *
+#
+#
+# root = Tk()
+#
+# root.title("AccountOne")
+#
+# root.geometry("600x260")
+#
+# app = Label(root)
+# app.pack()
+#
+# empty_fieled = Label(app)
+# empty_fieled.grid(row=0,column=1)
+#
+# login_command = Label(app,text="Imię")
+# login_command.grid(row=1,column=1)
+#
+#
+# password_command = Label(app,text="Hasło")
+# password_command.grid(row=2,column=1)
+#
+# login_field = Entry(app)
+# login_field.grid(row = 1,column=2)
+#
+#
+# password_field = Entry(app)
+# password_field.grid(row=2,column=2)
+#
+# register_tenants = {"jan": {"jan": "12345678"}, "adam": {"adam": "12345678"}, "ola": {"ola": "123456789"}}
+#
+#
+# all_purchases = {}
+#
+# food_or_industrial = {"spożywcze": {},
+#                           "przemysłowe": {}}
+#
+# def _choice_categorys(choice_category, product, price,main_catalog,user):
+#     if choice_category == "Spożywcze":
+#         # spozywcze
+#         if product in main_catalog[user]["spożywcze"]:
+#             main_catalog[user]["spożywcze"][product].append(price)
+#         else:
+#             main_catalog[user]["spożywcze"].setdefault(product, [price])
+#     elif choice_category == "Przemysłowe":
+#         # przemysłowe
+#         if product in main_catalog[user]["przemysłowe"]:
+#             main_catalog[user]["przemysłowe"][product].append(price)
+#         else:
+#             main_catalog[user]["przemysłowe"].setdefault(product, [price])
+#
+#
+#
+# def add_products(name):
+#     new_window = Label(root)
+#
+#     kontener = Listbox(new_window,width = 100, height = 50)
+#     def x():
+#
+#
+#
+#         for user in all_purchases:
+#             kontener.insert(END,(f"Lokator '{user}':"))
+#             for category in all_purchases[user]:
+#                 kontener.insert(END,"    ",("          -{}".format(category)))
+#                 for product in all_purchases[user][category]:
+#                     kontener.insert(END, ("                     - {}".format(product)))
+#                     for price in all_purchases[user][category][product]:
+#                         kontener.insert(END,("                                - {} zł".format(price)))
+#
+#
+#     kontener.grid(row=5, column=2)
+#
+#
+#
+#     empty_field1 = Label(new_window)
+#     empty_field1.grid(row=0, column=1)
+#
+#     product_field = Entry(new_window)
+#     product_field.grid(row = 1,column=2)
+#
+#
+#     product_command = Label(new_window, text="Produkt")
+#     product_command.grid(row=1, column=1)
+#
+#     price_field = Entry(new_window)
+#     price_field.grid(row=2,column=2)
+#
+#     price_command = Label(new_window,text="Cena")
+#     price_command.grid(row=2,column=1)
+#
+#     suwak = Combobox(new_window)
+#     suwak['values'] = ("Spożywcze", "Przemysłowe")
+#     suwak.current(0)  # ustawienie co ma być wartością domyślną
+#     suwak.grid(column=0, row=0)
+#
+#     user = name
+#
+#     def wybor():
+#         category = suwak.get()
+#         produkt = product_field.get()
+#         price = price_field.get()
+#
+#         if price.isalpha():
+#             messagebox.showinfo("Informacja","Nie poprawny typ danych, wpisz cyfrę!")
+#         else:
+#             _choice_categorys(category,produkt,float(price),all_purchases,user)
+#             x()
+#
+#     add_product_button = Button(new_window,text="Dodaj produkt", command=wybor)
+#     add_product_button.grid(row=3,column=2)
+#
+#
+#     new_window.pack()
+#
+#
+#
+# def login_tenant():
+#
+#     name = login_field.get()
+#     password = password_field.get()
+#
+#     if name not in register_tenants:
+#         messagebox.showinfo('Informacja', f"Lokator {name} nie istnieje w katalogu, wpisz poprawny nick!")
+#
+#     elif password != register_tenants[name][name]:
+#         messagebox.showinfo('Informacja', "Twoje hasło jest niepoprawne!")
+#     else:
+#         all_purchases[name] = food_or_industrial
+#         app.destroy()
+#         add_products(name)
+#
+#
+#
+#
+#
+# login_button = Button(app,text="Zaloguj się",command = login_tenant)
+# login_button.grid(row=3,column=2)
+#
+# register_button = Button(app,text="Rejestracja")
+# register_button.grid(row=4,column=2)
+#
+#
+#
+# root.mainloop()
+#
+#
+#
+
+
+
+
+
 
 
 
