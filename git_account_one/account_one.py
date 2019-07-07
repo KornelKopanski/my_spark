@@ -105,7 +105,7 @@ def mechanism_sum_tenant():
             sum_all_tenants.append(i)
 
     # dzielenie łącznych zakupów po równo na każdego lokatora
-    one_tenant = sum(sum_all_tenants) // len(all_purchases)
+    one_tenant = sum(sum_all_tenants) /len(all_purchases)
 
     for user in all_purchases:
 
