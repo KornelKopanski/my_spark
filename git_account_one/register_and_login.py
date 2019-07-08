@@ -50,7 +50,6 @@ class RegisterLoginTenant:
                     print("Twoje hasło jest niepoprawne!")
                 else:
                     self.user = name
-                    self.main_catalog[name] = self.category
                     break
 
     def login_or_register(self,object):
