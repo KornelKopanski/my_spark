@@ -29,3 +29,15 @@ class RecordRead:
             value = lista[i]
             self.all_purchases[key] = value
 
+
+    # końcowy zapis do pliku
+    def recording_file(self):
+        with open("AccountOAll.json", "w")  as my_file:
+            self.json.dump(self.all_purchases, my_file)
+
+    # końcowy zapis do pliku rejestracji
+    def recording_file_register(self):
+        with open("registerAccountO.json", "w")  as my_file:
+            self.json.dump(self.register_tenants, my_file)
+
+
