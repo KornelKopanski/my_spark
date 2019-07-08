@@ -6,7 +6,7 @@
 # I sprawdza która osoba musi oddać pieniądze innym współlokatorom,
 # a która sama powinna otrzymać zwrot pieniedzy.
 
-from git_account_one import add_elements,user_sum,register_and_login
+from git_account_one import add_elements,user_sum,register_and_login,recording_and_reading
 import json
 
 # Tworzę słownik w którym będą gromadzone zakupy wszystkich współlokatorów.
@@ -29,29 +29,14 @@ while True:
     else:
         break
 
+read = recording_and_reading.RecordRead(json,register_tenants,all_purchases)
+
 # Odczyt z pliku rejestracji
-def registerAccountO():
-    with open("registerAccountO.json","r")  as my_file:
-        lista = json.load(my_file)
-
-    for i in lista:
-        key = i
-        value = lista[i]
-        register_tenants[key] = value
-
-registerAccountO()
+read.registerAccountO()
 
 # Odczyt z pliku
-def read_all_purchases():
-    with open("AccountOAll.json","r")  as my_file:
-        lista = json.load(my_file)
+read.read_all_purchases()
 
-    for i in lista:
-        key = i
-        value = lista[i]
-        all_purchases[key] = value
-
-read_all_purchases()
 
 # Tworzę kategorię zakupów.
 food_or_industrial = None
@@ -75,13 +60,14 @@ while end != "0":
 
     end = input("Aby dodać nowego lokatora wciśnij 'enter', aby zakończyć wpisz '0'.")
 
+recording = recording_and_reading.RecordRead(json,register_tenants,all_purchases)
+
+
 # końcowy zapis do pliku
-with open("AccountOAll.json","w")  as my_file:
-    json.dump(all_purchases,my_file)
+recording.recording_file()
 
 # końcowy zapis do pliku rejestracji
-with open("registerAccountO.json","w")  as my_file:
-    json.dump(register_tenants,my_file)
+recording.recording_file_register()
 
 
 for user in all_purchases:
