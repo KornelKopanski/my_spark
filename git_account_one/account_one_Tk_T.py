@@ -85,7 +85,14 @@ def add_products(name):
                     for price in all_purchases[user][category][product]:
                         kontener.insert(END,("                                - {} zł".format(price)))
 
+    new_window3 = Label(new_window)
 
+    scroll2 = tk.Scrollbar(new_window3)
+
+    kontener2 = Listbox(new_window3, width=40, height=20, yscrollcommand=scroll2.set)
+    scroll2.pack(side=tk.RIGHT, fill=tk.Y)
+    kontener2.pack(side=tk.LEFT, fill=tk.BOTH)
+    scroll2.config(command=kontener2.yview)
 
 
 
@@ -107,15 +114,15 @@ def add_products(name):
     price_command = Label(new_window,text="Cena")
     price_command.grid(row=2,column=1)
 
-    suwak = Combobox(new_window)
-    suwak['values'] = ("Spożywcze", "Przemysłowe")
-    suwak.current(0)  # ustawienie co ma być wartością domyślną
-    suwak.grid(column=0, row=0)
+    category_slider = Combobox(new_window)
+    category_slider['values'] = ("Spożywcze", "Przemysłowe")
+    category_slider.current(0)  # ustawienie co ma być wartością domyślną
+    category_slider.grid(column=0, row=0)
 
     user = name
 
-    def wybor():
-        category = suwak.get()
+    def you_choice_product():
+        category = category_slider.get()
         produkt = product_field.get()
         price = price_field.get()
 
@@ -125,12 +132,13 @@ def add_products(name):
             _choice_categorys(category,produkt,float(price),all_purchases,user)
             x()
 
-    add_product_button = Button(new_window,text="Dodaj produkt", command=wybor)
+    add_product_button = Button(new_window,text="Dodaj produkt", command=you_choice_product)
     add_product_button.grid(row=3,column=2)
 
 
     new_window.pack()
     new_window2.grid(row=5, column=2)
+    new_window3.grid(row=6,column=2)
 
 
 
