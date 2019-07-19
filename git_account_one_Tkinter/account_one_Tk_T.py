@@ -55,6 +55,18 @@ def _choice_categorys(choice_category, product, price,main_catalog,user):
         else:
             main_catalog[user]["przemysłowe"].setdefault(product, [price])
 
+def x(kontener):
+
+
+    kontener.delete(0,END)
+    for user in all_purchases:
+        kontener.insert(END,(f"Lokator '{user}':"))
+        for category in all_purchases[user]:
+            kontener.insert(END,"    ",("          -{}".format(category)))
+            for product in all_purchases[user][category]:
+                kontener.insert(END, ("                     - {}".format(product)))
+                for price in all_purchases[user][category][product]:
+                    kontener.insert(END,("                                - {} zł".format(price)))
 
 
 def add_products(name):
@@ -69,21 +81,6 @@ def add_products(name):
     scroll.config(command = kontener.yview)
 
 
-
-
-
-    def x():
-
-
-        kontener.delete(0,END)
-        for user in all_purchases:
-            kontener.insert(END,(f"Lokator '{user}':"))
-            for category in all_purchases[user]:
-                kontener.insert(END,"    ",("          -{}".format(category)))
-                for product in all_purchases[user][category]:
-                    kontener.insert(END, ("                     - {}".format(product)))
-                    for price in all_purchases[user][category][product]:
-                        kontener.insert(END,("                                - {} zł".format(price)))
 
     new_window3 = Label(new_window)
 
@@ -130,7 +127,7 @@ def add_products(name):
             messagebox.showinfo("Informacja","Nie poprawny typ danych, wpisz cyfrę!")
         else:
             _choice_categorys(category,produkt,float(price),all_purchases,user)
-            x()
+            x(kontener)
 
     add_product_button = Button(new_window,text="Dodaj produkt", command=you_choice_product)
     add_product_button.grid(row=3,column=2)
