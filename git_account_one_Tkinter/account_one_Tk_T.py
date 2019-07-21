@@ -68,17 +68,6 @@ def x(kontener):
                 for price in all_purchases[user][category][product]:
                     kontener.insert(END,("                                - {} zł".format(price)))
 
-def you_choice_product(category_slider,product_field,price_field,kontener,user):
-    category = category_slider.get()
-    produkt = product_field.get()
-    price = price_field.get()
-
-    if price.isalpha():
-        messagebox.showinfo("Informacja","Nie poprawny typ danych, wpisz cyfrę!")
-    else:
-        _choice_categorys(category,produkt,float(price),all_purchases,user)
-        x(kontener)
-
 
 def add_products(name):
     new_window = Label(root)
@@ -129,9 +118,18 @@ def add_products(name):
 
     user = name
 
+    def you_choice_product():
+        category = category_slider.get()
+        produkt = product_field.get()
+        price = price_field.get()
 
+        if price.isalpha():
+            messagebox.showinfo("Informacja","Nie poprawny typ danych, wpisz cyfrę!")
+        else:
+            _choice_categorys(category,produkt,float(price),all_purchases,user)
+            x(kontener)
 
-    add_product_button = Button(new_window,text="Dodaj produkt", command=you_choice_product(category_slider,product_field,price_field,kontener,user))
+    add_product_button = Button(new_window,text="Dodaj produkt", command=you_choice_product)
     add_product_button.grid(row=3,column=2)
 
 
