@@ -37,11 +37,8 @@ read.registerAccountO()
 # Odczyt z pliku
 read.read_all_purchases()
 
-
 # Tworzę kategorię zakupów.
 food_or_industrial = None
-
-
 
 end = ""
 while end != "0":
