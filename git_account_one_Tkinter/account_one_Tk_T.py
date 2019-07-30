@@ -30,7 +30,7 @@ login_field = Entry(app)
 login_field.grid(row = 1,column=2)
 
 
-password_field = Entry(app)
+password_field = Entry(app,show="*")
 password_field.grid(row=2,column=2)
 
 register_tenants = {"jan": {"jan": "12345678"}, "adam": {"adam": "12345678"}, "ola": {"ola": "123456789"}}
