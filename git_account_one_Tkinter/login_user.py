@@ -4,18 +4,19 @@ class Login:
 
     def __init__(self,login_field,password_field,user_base,messagebox,root,app,tk):
 
-        self.login = login_field
-        self.password = password_field
+        self.login_field = login_field
+        self.password_field = password_field
         self.user_base = user_base
         self.messagebox = messagebox
         self.root = root
         self.app = app
         self.tk = tk
+        self.login = None
+        self.password = None
 
     def _check_login(self):
 
         if self.login in self.user_base:
-            self.messagebox.showinfo("Informacja", "ok!")
             return True
         else:
             self.messagebox.showinfo("Informacja", "Podany login nie istnieje!")
@@ -29,20 +30,16 @@ class Login:
 
     def _sign_in(self):
 
-        Login._check_login(self)
-        Login._check_password(self)
+        user = Login._check_login(self)
+        password_user = Login._check_password(self)
 
-        login = Login._check_login(self)
-        password = Login._check_password(self)
-
-        if login and password:
+        if user and password_user:
             return True
         else:
             return False
 
-    def signed_successfully(self):
 
-        Login._sign_in(self)
+    def _sign_and_window(self):
 
         sign = Login._sign_in(self)
 
@@ -51,18 +48,16 @@ class Login:
             app_two = self.tk.Frame(self.root)
             app_two.pack()
 
+    def download(self):
 
-class Download:
-
-    def __init__(self,login_field):
-
-        self.login_field = login_field
-        self.logi = None
-
-    def log(self):
         login = self.login_field.get()
-        self.logi = login
-        print(self.logi)
+        self.login = login
+
+        password = self.password_field.get()
+        self.password = password
+
+        Login._sign_and_window(self)
+
 
 
 
