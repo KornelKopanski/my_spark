@@ -18,3 +18,18 @@ class CreateButtons:
         register_button = self.tk.Button(self.app, text="Zarejestruj się", command=self.user_register.add_user)
         register_button.grid(row=4, column=2)
 
+
+
+class CreateButtonsTwo:
+
+    def __init__(self,tk,app):
+
+        self.tk = tk
+        self.app = app
+
+    def add_product_button(self):
+
+        add_product_button = self.tk.Button(self.app, text="Dodaj produkt")
+        add_product_button.grid(row=3, column=2)
+
+

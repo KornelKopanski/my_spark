@@ -1,5 +1,5 @@
 
-
+from git_account_one_Tkinter import button_account_one
 
 class Windows:
 
@@ -29,5 +29,8 @@ class Windows:
 
         price_command = self.tk.Label(window_two, text="Cena")
         price_command.grid(row=2, column=1)
+
+        product_button = button_account_one.CreateButtonsTwo(self.tk,window_two)
+        product_button.add_product_button()
 
 
