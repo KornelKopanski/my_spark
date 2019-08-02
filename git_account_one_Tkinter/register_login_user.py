@@ -1,4 +1,6 @@
 
+from git_account_one_Tkinter import new_window
+
 
 class Login:
 
@@ -45,9 +47,13 @@ class Login:
         sign = Login._sign_in(self)
 
         if sign:
+            # zamknięcie okna rejestracji
             self.app.destroy()
-            app_two = self.tk.Frame(self.root)
-            app_two.pack()
+
+            # utworzenie okna dodawania produktów
+            app_two = new_window.Windows(self.tk,self.root)
+            app_two.create_window()
+
             self.messagebox.showinfo("Informacja", "Logowanie przebiegło pomyślnie!")
 
     def download_date(self):
@@ -99,7 +105,7 @@ class Register(Login):
             self.user_register[self.login] = self.password
             self.messagebox.showinfo("Informacja", "Proces rejestracji przebiegł pomyślnie!")
 
-        
+
 
 
 
