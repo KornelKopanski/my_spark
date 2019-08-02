@@ -1,6 +1,6 @@
 
 import tkinter as tk
-from git_account_one_Tkinter import login_user
+from git_account_one_Tkinter import register_login_user
 from tkinter import messagebox
 
 root = tk.Tk()
