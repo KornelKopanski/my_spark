@@ -92,13 +92,14 @@ class Register(Login):
     def add_user(self):
 
         if Register._add_user_login(self) and Register._add_user_password(self):
+            # dodanie loginu
             self.user_base[self.login] = {}
             self.user_register = self.user_base[self.login]
-
+            # dodanie hasła
             self.user_register[self.login] = self.password
             self.messagebox.showinfo("Informacja", "Proces rejestracji przebiegł pomyślnie!")
 
-        print(self.user_base)
+        
 
 
 
