@@ -51,10 +51,9 @@ class Login:
             self.app.destroy()
 
             # utworzenie okna dodawania produktów
+            self.root.geometry("800x600")
             app_two = new_window.Windows(self.tk,self.root)
             app_two.create_window()
-
-            self.messagebox.showinfo("Informacja", "Logowanie przebiegło pomyślnie!")
 
     def download_date(self):
 

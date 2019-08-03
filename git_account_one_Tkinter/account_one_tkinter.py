@@ -6,7 +6,7 @@ from tkinter import messagebox
 
 root = tk.Tk()
 root.title("AccountOne")
-root.geometry("800x600")
+root.geometry("300x200")
 
 user_base = {"a":{"a":"1234567"}, "b":{"b":"7"}}
 
