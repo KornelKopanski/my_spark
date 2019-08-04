@@ -30,6 +30,6 @@ class CreateButtonsTwo:
     def add_product_button(self):
 
         add_product_button = self.tk.Button(self.app, text="Dodaj produkt")
-        add_product_button.grid(row=3, column=2,sticky = self.tk.W)
+        add_product_button.grid(row=3, column=3,sticky = self.tk.NW,columnspan = 2)
 
 

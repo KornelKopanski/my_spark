@@ -20,7 +20,7 @@ class Elements:
     def window_for_products(self):
 
         etiquette = self.tk.Label(self.window)
-        etiquette.grid(row=5, column=1)
+        etiquette.grid(row=1, column=1,rowspan = 50)
 
         Elements._contaneir_products(self,etiquette)
 
