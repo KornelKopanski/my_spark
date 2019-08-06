@@ -27,7 +27,7 @@ class Elements:
     def window_for_settlement(self):
 
         etiquette = self.tk.Label(self.window)
-        etiquette.grid(row=5, column=2)
+        etiquette.grid(row=52, column=1)
 
         Elements._contaneir_products(self, etiquette)
 

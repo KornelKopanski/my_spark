@@ -37,5 +37,9 @@ class Windows:
         elements_etiquette = elelments.Elements(self.tk,self.root,window_two)
         elements_etiquette.window_for_products()
 
+        # Etykieta rozliczenie
+        settlement_etiquette = elelments.Elements(self.tk,self.root,window_two)
+        settlement_etiquette.window_for_settlement()
+
 
 
