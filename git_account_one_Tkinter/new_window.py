@@ -19,16 +19,16 @@ class Windows:
         empty_field1.grid(row=0, column=1)
 
         product_field = self.tk.Entry(window_two)
-        product_field.grid(row=6, column=3,sticky = self.tk.SW)
+        product_field.grid(row=3, column=3,sticky = self.tk.W)
 
         product_command = self.tk.Label(window_two, text="Produkt")
-        product_command.grid(row=6, column=2,sticky = self.tk.SW)
+        product_command.grid(row=3, column=2,sticky = self.tk.E)
 
         price_field = self.tk.Entry(window_two)
-        price_field.grid(row=7, column=3,sticky = self.tk.W)
+        price_field.grid(row=4, column=3,sticky = self.tk.W)
 
         price_command = self.tk.Label(window_two, text="Cena")
-        price_command.grid(row=7, column=2,sticky = self.tk.E)
+        price_command.grid(row=4, column=2,sticky = self.tk.E)
 
         product_button = button_account_one.CreateButtonsTwo(self.tk,window_two)
         product_button.add_product_button()
@@ -42,8 +42,8 @@ class Windows:
         # settlement_etiquette.window_for_settlement()
 
         # Pole wyboru kategorii
-        ca_slider = category_slider.CategorySlider()
-        ca_slider.choice_category_slider(window_two)
+        ca_slider = category_slider.CategorySlider(self.tk,window_two)
+        ca_slider.choice_category_slider()
 
 
 
