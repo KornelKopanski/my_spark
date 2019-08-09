@@ -14,38 +14,20 @@ class CategorySlider:
         category_command = self.tk.Label(self.window_two, text="Kategoria")
         category_command.grid(column=2,row=2)
 
-    def _command_subcategory_slider(self):
-
-        category_command = self.tk.Label(self.window_two, text="Rodzaj")
-        category_command.grid(column=2,row=3)
-
     def choice_category_slider(self):
 
-        CategorySlider._command_category_slider(self)
+        self._command_category_slider()
 
-        category_slider = Combobox(self.window_two)
+        slider = self.tk.StringVar()
+
+        category_slider = Combobox(self.window_two,textvariable = slider)
         category_slider['values'] = ("Spożywcze", "Przemysłowe")
-        category_slider.current(0)  # ustawienie co ma być wartością domyślną
+        category_slider.current(1)  # ustawienie co ma być wartością domyślną
         category_slider.grid(column=3, row=2)
         self.you_choice_category = category_slider.get()
 
 
-    def subcategory_slider(self,you_choice_category):
 
-        CategorySlider._command_subcategory_slider(self)
-
-        subcategory_slider = Combobox(self.window_two)
-
-        if you_choice_category == "Spożywcze":
-
-            subcategory_slider['values'] = ("Nabiał", "Pieczywo")
-
-        elif you_choice_category == "Przemysłowe":
-            subcategory_slider['values'] = ("Kosmetyki", "Płyny")
-
-
-        subcategory_slider.current(0)  # ustawienie co ma być wartością domyślną
-        subcategory_slider.grid(column=3, row=3)
 
 
 
