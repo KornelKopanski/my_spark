@@ -18,11 +18,9 @@ class CategorySlider:
 
         self._command_category_slider()
 
-        slider = self.tk.StringVar()
-
-        category_slider = Combobox(self.window_two,textvariable = slider)
+        category_slider = Combobox(self.window_two)
         category_slider['values'] = ("Spożywcze", "Przemysłowe")
-        category_slider.current(1)  # ustawienie co ma być wartością domyślną
+        category_slider.current(0)  # ustawienie co ma być wartością domyślną
         category_slider.grid(column=3, row=2)
         self.you_choice_category = category_slider.get()
 

@@ -63,7 +63,7 @@ class Windows:
         brand_field = self.tk.Entry(window_two)
         brand_field.grid(row=7, column=3, sticky=self.tk.W)
 
-        brand_command = self.tk.Label(window_two, text="Data")
+        brand_command = self.tk.Label(window_two, text="Marka")
         brand_command.grid(row=7, column=2, sticky=self.tk.E)
 
 
