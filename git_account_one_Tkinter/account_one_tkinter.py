@@ -4,11 +4,16 @@ from git_account_one_Tkinter import register_login_user,button_account_one
 from tkinter import messagebox
 
 
+
 root = tk.Tk()
 root.title("AccountOne")
 root.geometry("300x200")
 
 user_base = {"a":{"a":"1234567"}, "b":{"b":"7"}}
+
+shopping = {}
+
+category = {"Spożywcze":{}, "Przemysłowe":{}}
 
 app = tk.Frame(root)
 app.pack()
@@ -29,13 +34,15 @@ password_field = tk.Entry(app,show="*")
 password_field.grid(row=2,column=2)
 
 # obiekt logowania
-user_login = register_login_user.Login(login_field, password_field, user_base, messagebox, root, app, tk)
+user_login = register_login_user.Login(login_field, password_field, user_base, messagebox, root, app, tk,shopping,category)
 
 # obiekt rejestracji
-user_register = register_login_user.Register(login_field, password_field, user_base, messagebox, root, app, tk)
+user_register = register_login_user.Register(login_field, password_field, user_base, messagebox, root, app, tk,shopping,category)
 
 # obiekt przycisków
 buttons = button_account_one.CreateButtons(user_login,user_register,tk,app)
 
 
 root.mainloop()
+
+

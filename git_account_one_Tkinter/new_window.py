@@ -10,6 +10,7 @@ class Windows:
 
 
 
+
     def create_window(self):
 
         window_two = self.tk.Frame(self.root)
@@ -65,8 +66,6 @@ class Windows:
 
         brand_command = self.tk.Label(window_two, text="Marka")
         brand_command.grid(row=7, column=2, sticky=self.tk.E)
-
-
 
 
 
