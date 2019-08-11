@@ -9,8 +9,6 @@ class Windows:
         self.root = root
 
 
-
-
     def create_window(self):
 
         window_two = self.tk.Frame(self.root)
@@ -19,14 +17,8 @@ class Windows:
         empty_field1 = self.tk.Label(window_two)
         empty_field1.grid(row=0, column=1)
 
-        product_field = self.tk.Entry(window_two)
-        product_field.grid(row=3, column=3,sticky = self.tk.W)
-
         product_command = self.tk.Label(window_two, text="Produkt")
         product_command.grid(row=3, column=2,sticky = self.tk.E)
-
-        price_field = self.tk.Entry(window_two)
-        price_field.grid(row=4, column=3,sticky = self.tk.W)
 
         price_command = self.tk.Label(window_two, text="Cena")
         price_command.grid(row=4, column=2,sticky = self.tk.E)
@@ -46,26 +38,25 @@ class Windows:
         ca_slider = category_slider.CategorySlider(self.tk,window_two)
         ca_slider.choice_category_slider()
 
-        # ilość produktów
-        quantity_field = self.tk.Entry(window_two)
-        quantity_field.grid(row=5, column=3, sticky=self.tk.W)
-
         quantity_command = self.tk.Label(window_two, text="Ilość")
         quantity_command.grid(row=5, column=2, sticky=self.tk.E)
-
-        # Data zakupu
-        date_field = self.tk.Entry(window_two)
-        date_field.grid(row=6, column=3, sticky=self.tk.W)
 
         date_command = self.tk.Label(window_two, text="Data")
         date_command.grid(row=6, column=2, sticky=self.tk.E)
 
-        # Marka produktu
-        brand_field = self.tk.Entry(window_two)
-        brand_field.grid(row=7, column=3, sticky=self.tk.W)
-
         brand_command = self.tk.Label(window_two, text="Marka")
         brand_command.grid(row=7, column=2, sticky=self.tk.E)
+
+        weight_command = self.tk.Label(window_two, text="Waga")
+        weight_command.grid(row=8, column=2, sticky=self.tk.E)
+
+
+
+
+
+
+
+
 
 
 

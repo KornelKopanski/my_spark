@@ -4,7 +4,7 @@ from git_account_one_Tkinter import new_window
 
 class Login:
 
-    def __init__(self,login_field,password_field,user_base,messagebox,root,app,tk,shopping,category):
+    def __init__(self,login_field,password_field,user_base,messagebox,root,app,tk):
 
         self.login_field = login_field
         self.password_field = password_field
@@ -16,8 +16,9 @@ class Login:
         self.login = None
         self.password = None
         self.user_register = None
-        self.shopping = shopping
-        self.category = category
+
+
+
 
     def _check_login(self):
 
@@ -56,6 +57,8 @@ class Login:
             self.root.geometry("800x600")
             app_two = new_window.Windows(self.tk,self.root)
             app_two.create_window()
+
+
 
     def download_date(self):
 
@@ -106,7 +109,7 @@ class Register(Login):
             self.user_register[self.login] = self.password
             self.messagebox.showinfo("Informacja", "Proces rejestracji przebiegł pomyślnie!")
 
-            self.shopping[self.login] = self.category
+
 
 
 

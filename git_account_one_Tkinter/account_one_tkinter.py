@@ -34,15 +34,22 @@ password_field = tk.Entry(app,show="*")
 password_field.grid(row=2,column=2)
 
 # obiekt logowania
-user_login = register_login_user.Login(login_field, password_field, user_base, messagebox, root, app, tk,shopping,category)
+user_login = register_login_user.Login(login_field, password_field, user_base, messagebox, root, app, tk)
 
 # obiekt rejestracji
-user_register = register_login_user.Register(login_field, password_field, user_base, messagebox, root, app, tk,shopping,category)
+user_register = register_login_user.Register(login_field, password_field, user_base, messagebox, root, app, tk)
 
 # obiekt przycisków
 buttons = button_account_one.CreateButtons(user_login,user_register,tk,app)
 
 
+
+
+
 root.mainloop()
+
+
+
+
 
 
