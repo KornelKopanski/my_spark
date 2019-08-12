@@ -1,5 +1,7 @@
 
-from git_account_one_Tkinter import button_account_one,elelments,category_slider
+from git_account_one_Tkinter import button_account_one,elelments,category_slider,add_product
+
+shopping = {}
 
 class Windows:
 
@@ -25,6 +27,8 @@ class Windows:
 
         product_button = button_account_one.CreateButtonsTwo(self.tk,window_two)
         product_button.add_product_button()
+
+        add = add_product.AddProduct(product_button.)
 
         # Etykieta na produkkty
         elements_etiquette = elelments.Elements(self.tk,self.root,window_two)

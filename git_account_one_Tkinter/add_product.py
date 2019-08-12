@@ -2,7 +2,7 @@
 
 class AddProduct:
 
-    def __init__(self,shopping,category,user):
+    def __init__(self,user,shopping,category=None):
 
         self.shopping = shopping
         self.category = category
