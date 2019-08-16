@@ -1,6 +1,6 @@
 
 import tkinter as tk
-from git_account_one_Tkinter import register_login_user,button_account_one
+from git_account_one_Tkinter import register_login_user,button_account_one,new_window
 from tkinter import messagebox
 
 
@@ -47,6 +47,12 @@ buttons = button_account_one.CreateButtons(user_login,user_register,tk,app)
 
 
 root.mainloop()
+
+
+user = user_login.login
+
+print(new_window.shopping)
+
 
 
 

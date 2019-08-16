@@ -1,5 +1,7 @@
 
-from git_account_one_Tkinter import button_account_one,elelments,category_slider
+from git_account_one_Tkinter import button_account_one,elelments,category_slider,add_product,account_one_tkinter
+
+shopping = {}
 
 
 class Windows:
@@ -38,6 +40,11 @@ class Windows:
         # Pole wyboru kategorii
         ca_slider = category_slider.CategorySlider(self.tk,window_two)
         ca_slider.choice_category_slider()
+        self.category = ca_slider.you_choice_category
+
+        add = add_product.AddProduct(account_one_tkinter.user,shopping,self.category)
+        add.add_product(product_button.product,self.category,product_button.price)
+
 
         quantity_command = self.tk.Label(window_two, text="Ilość")
         quantity_command.grid(row=5, column=2, sticky=self.tk.E)
