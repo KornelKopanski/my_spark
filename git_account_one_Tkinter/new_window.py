@@ -1,13 +1,14 @@
 
-from git_account_one_Tkinter import button_account_one,elelments,category_slider,add_product,account_one_tkinter
+from git_account_one_Tkinter import button_account_one,elelments,category_slider,add_product
 
 shopping = {}
 
 
 class Windows:
 
-    def __init__(self,tk,root):
+    def __init__(self,tk,root,user):
 
+        self.user = user
         self.tk = tk
         self.root = root
         self.category = None
@@ -43,7 +44,7 @@ class Windows:
         ca_slider.choice_category_slider()
         self.category = ca_slider.you_choice_category
 
-        add = add_product.AddProduct(account_one_tkinter.user,shopping,self.category)
+        add = add_product.AddProduct(self.user,shopping,self.category)
         add.add_product(product_button.product,self.category,product_button.price)
 
 

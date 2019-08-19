@@ -55,7 +55,7 @@ class Login:
 
             # utworzenie okna dodawania produktów
             self.root.geometry("800x600")
-            app_two = new_window.Windows(self.tk,self.root)
+            app_two = new_window.Windows(self.tk,self.root,self.login)
             app_two.create_window()
 
 
