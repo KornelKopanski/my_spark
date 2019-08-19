@@ -10,6 +10,7 @@ class Windows:
 
         self.tk = tk
         self.root = root
+        self.category = None
 
 
     def create_window(self):
