@@ -3,7 +3,7 @@ from tkinter.messagebox import *
 
 class Login(Frame):
 
-    def __init__(self,master,all_tenants):
+    def __init__(self,master,all_tenants,index_window=0):
 
         super(Login,self).__init__(master)
         self.grid(pady=20,padx=40)
@@ -14,6 +14,7 @@ class Login(Frame):
         self.password = None
         self.master = master
         self.all_tenants = all_tenants
+        self.index_window = index_window
 
     def create_label(self):
 
@@ -39,6 +40,8 @@ class Login(Frame):
         if self.login in self.all_tenants:
             if self.password == self.all_tenants[self.login]:
                 showinfo("Informacja","Zalogowano pomyślnie!")
+                self.index_window += 1
+                self.master.destroy()
             else:
                 showinfo("Uwaga!", "Nie poprawne hasło!")
         else:
