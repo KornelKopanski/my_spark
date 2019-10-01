@@ -1,9 +1,10 @@
 from tkinter import *
+from tkinter.messagebox import *
 
 # ramka w postaci klasy
 class Login(Frame):
 
-    def __init__(self,master):
+    def __init__(self,master,all_tenants):
 
         super(Login,self).__init__(master)
         self.grid(pady=20,padx=40)
@@ -12,6 +13,7 @@ class Login(Frame):
         self.create_entry()
         self.login = None
         self.password = None
+        self.all_tenants = all_tenants
 
     def create_label(self):
 
@@ -29,14 +31,22 @@ class Login(Frame):
         self.password_entry = Entry(self,show="*")
         self.password_entry.grid(row=1,column=1)
 
-    def get_password_and_login(self):
+    def confront_login_and_password(self):
 
         self.login = self.name_entry.get()
         self.password = self.password_entry.get()
 
+        if self.login in self.all_tenants:
+            if self.password == self.all_tenants[self.login]:
+                showinfo("Informacja","Zalogowano poprawnie!")
+            else:
+                showinfo("Uwaga!", "Nie poprawne hasło!")
+        else:
+            showinfo("Uwaga!", "Nie poprawny login!")
+
     def create_button(self):
 
-        self.login_button = Button(self, text="Zaloguj!", command=self.get_password_and_login)
+        self.login_button = Button(self, text="Zaloguj!", command=self.confront_login_and_password)
         self.login_button.grid(column=1)
 
 
