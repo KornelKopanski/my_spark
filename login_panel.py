@@ -10,6 +10,8 @@ class Login(Frame):
         self.create_label()
         self.create_button()
         self.create_entry()
+        self.login = None
+        self.password = None
 
     def create_label(self):
 
@@ -24,12 +26,17 @@ class Login(Frame):
         self.name_entry = Entry(self)
         self.name_entry.grid(row=0,column=1)
 
-        self.password_entry = Entry(self)
+        self.password_entry = Entry(self,show="*")
         self.password_entry.grid(row=1,column=1)
+
+    def get_password_and_login(self):
+
+        self.login = self.name_entry.get()
+        self.password = self.password_entry.get()
 
     def create_button(self):
 
-        self.login_button = Button(self, text="Zaloguj!")
+        self.login_button = Button(self, text="Zaloguj!", command=self.get_password_and_login)
         self.login_button.grid(column=1)
 
 
