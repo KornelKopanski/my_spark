@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.messagebox import *
 
-# ramka w postaci klasy
 class Login(Frame):
 
     def __init__(self,master,all_tenants):
@@ -13,6 +12,7 @@ class Login(Frame):
         self.create_entry()
         self.login = None
         self.password = None
+        self.master = master
         self.all_tenants = all_tenants
 
     def create_label(self):
@@ -38,16 +38,34 @@ class Login(Frame):
 
         if self.login in self.all_tenants:
             if self.password == self.all_tenants[self.login]:
-                showinfo("Informacja","Zalogowano poprawnie!")
+                showinfo("Informacja","Zalogowano pomyślnie!")
             else:
                 showinfo("Uwaga!", "Nie poprawne hasło!")
         else:
-            showinfo("Uwaga!", "Nie poprawny login!")
+            showinfo("Uwaga!", "Nie poprawny login!\nPopraw login lub zarejestruj się!")
+
+    def register_user(self):
+
+        self.login = self.name_entry.get()
+        self.password = self.password_entry.get()
+
+        if self.login in self.all_tenants:
+            showinfo("Uwaga!", "Podany login istnieje, zmień login!")
+        else:
+            if self.password:
+                self.all_tenants[self.login] = self.password
+                showinfo("Informacja", "Rejestracja przbiegła pomyślnie!\nNależy się zalogować!")
+            else:
+                showinfo("Uwaga!", "Proszę wprowadzić hasło!")
 
     def create_button(self):
 
-        self.login_button = Button(self, text="Zaloguj!", command=self.confront_login_and_password)
-        self.login_button.grid(column=1)
+        self.login_button = Button(self, text="Zaloguj się!", command=self.confront_login_and_password)
+        self.login_button.grid(column=1,row=2)
+
+        self.register_button = Button(self, text="Zarejestruj sie!", command=self.register_user)
+        self.register_button.grid(column=1,row=3)
+
 
 
 
