@@ -16,6 +16,8 @@ class Products(Frame):
         self.create_combobox()
         self.create_entry()
         self.create_spinbox()
+        self.create_scrollbar()
+
 
     def create_label(self):
 
@@ -81,8 +83,17 @@ class Products(Frame):
         self.category_combobox.current(0)
         self.category_combobox.grid(row=2,column=2)
 
+    def create_scrollbar(self):
+
+        self.scrollbar_product_window = Scrollbar(self)
+        self.scrollbar_product_window.place(in_ = self.main_products_window, relx = 1., rely = 0, relheight = 1.)
+        self.scrollbar_product_window.config(command = self.main_products_window.yview)
+
+
+
     def create_listbox(self):
 
         self.main_products_window = Listbox(self,width=70,height=25)
         self.main_products_window.grid(row=2,column=0,pady=1,padx=10,sticky=N,rowspan=70)
+
 
