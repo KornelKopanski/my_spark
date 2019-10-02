@@ -39,7 +39,6 @@ class Login(Frame):
 
         if self.login in self.all_tenants:
             if self.password == self.all_tenants[self.login]:
-                showinfo("Informacja","Zalogowano pomyślnie!")
                 self.index_window += 1
                 self.master.destroy()
             else:

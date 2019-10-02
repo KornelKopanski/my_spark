@@ -1,25 +1,15 @@
 
-from login_panel import *
+from root_windows_models import *
 
 
+all_tenats = {"":""}
 
-all_tenats = {"jan":"123"}
+root_login = Root_Login(all_tenats)
 
-root = Tk()
-root.title("Panel użytkownika")
-root.geometry("280x150+600+400")
 
-app_login_panel = Login(root,all_tenats)
+if root_login.app_login_panel.index_window == 1:
 
-root.mainloop()
-
-if app_login_panel.index_window == 1:
-
-    root_two= Tk()
-    root_two.title("Panel produktów")
-    root_two.geometry("400x200")
-    root_two.mainloop()
-
+    root_product = Root_Product(all_tenats)
 
 
 
