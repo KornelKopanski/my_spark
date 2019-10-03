@@ -26,7 +26,7 @@ class Root_Login:
 
 class Root_Product:
 
-    product = None
+
 
     def __init__(self,all_tenats):
 
@@ -42,6 +42,6 @@ class Root_Product:
         root_two.geometry("800x530")
 
         self.app_product_panel = Products(root_two)
-        self.product = self.app_product_panel.name_product
+
 
         root_two.mainloop()
