@@ -1,9 +1,12 @@
 from tkinter import *
 from tkinter.messagebox import *
 
+category = {"Spożywcze":{},
+            "Przemysłowe":{}}
+
 class Login(Frame):
 
-    def __init__(self,master,all_tenants,index_window=0):
+    def __init__(self,master,all_tenants,all_tenants_shoping,index_window=0):
 
         super(Login,self).__init__(master)
         self.grid(pady=20,padx=40)
@@ -15,6 +18,7 @@ class Login(Frame):
         self.master = master
         self.all_tenants = all_tenants
         self.index_window = index_window
+        self.all_tenants_shoping = all_tenants_shoping
 
     def create_label(self):
 
@@ -56,6 +60,7 @@ class Login(Frame):
         else:
             if self.password:
                 self.all_tenants[self.login] = self.password
+                self.all_tenants_shoping[self.login] = category
                 showinfo("Informacja", "Rejestracja przbiegła pomyślnie!\nNależy się zalogować!")
             else:
                 showinfo("Uwaga!", "Proszę wprowadzić hasło!")

@@ -4,9 +4,10 @@ from tkinter import ttk
 from datetime import *
 
 
+
 class Products(Frame):
 
-    def __init__(self,master):
+    def __init__(self,master=None):
 
         super(Products,self).__init__(master)
         self.grid()
@@ -17,6 +18,12 @@ class Products(Frame):
         self.create_entry()
         self.create_spinbox()
         self.create_scrollbar()
+
+        self.name_product = None
+        self.quantity_product = None
+        self.weight_product = None
+        self.price_product = None
+        self.data_product = str(date.today())
 
 
     def create_label(self):
@@ -66,16 +73,6 @@ class Products(Frame):
         self.price_entry = Entry(self,width=28)
         self.price_entry.grid(row=4,column=2)
 
-    def create_button(self):
-
-        self.calculation_batton = Button(self, text="Oblicz", width=30)
-        self.calculation_batton.grid(row=72, column=0)
-
-        self.add_product_button = Button(self,text="Dodaj produkt",width=32)
-        self.add_product_button.grid(row=8,column=1,columnspan=2,sticky=E)
-
-        self.remove_product_button = Button(self,text="Usuń produkt",width=32)
-        self.remove_product_button.grid(row=9,column=1,columnspan=2,sticky=E)
 
     def create_combobox(self):
 
@@ -95,5 +92,27 @@ class Products(Frame):
 
         self.main_products_window = Listbox(self,width=70,height=25)
         self.main_products_window.grid(row=2,column=0,pady=1,padx=10,sticky=N,rowspan=70)
+
+    def create_get_data(self):
+        self.name_product = self.product_entry.get()
+
+
+    def create_button(self):
+
+        self.calculation_batton = Button(self, text="Oblicz", width=30)
+        self.calculation_batton.grid(row=72, column=0)
+
+        self.add_product_button = Button(self,text="Dodaj produkt",width=32,command=self.create_get_data)
+        self.add_product_button.grid(row=8,column=1,columnspan=2,sticky=E)
+
+        self.remove_product_button = Button(self,text="Usuń produkt",width=32)
+        self.remove_product_button.grid(row=9,column=1,columnspan=2,sticky=E)
+
+
+
+
+
+
+
 
 
