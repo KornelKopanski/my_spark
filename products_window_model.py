@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from datetime import *
 
-
+data = {}
 
 class Products(Frame):
 
@@ -18,13 +18,6 @@ class Products(Frame):
         self.create_entry()
         self.create_spinbox()
         self.create_scrollbar()
-
-        self.name_product = None
-        self.quantity_product = None
-        self.weight_product = None
-        self.price_product = None
-        self.data_product = str(date.today())
-
 
     def create_label(self):
 
@@ -94,7 +87,20 @@ class Products(Frame):
         self.main_products_window.grid(row=2,column=0,pady=1,padx=10,sticky=N,rowspan=70)
 
     def create_get_data(self):
-        self.name_product = self.product_entry.get()
+
+        name_product = self.product_entry.get()
+        quantity_product = self.quantity_spinbox.get()
+        weight_product = self.weight_spinbox.get()
+        price_product = self.price_entry.get()
+        date_product = str(date.today())
+
+        data.clear()
+        data["name_product"] = name_product
+        data["quantity_product"] = quantity_product
+        data["weight_product"] = weight_product
+        data["price_product"] = price_product
+        data["date_product"] = date_product
+
 
 
     def create_button(self):

@@ -1,9 +1,6 @@
 
-
 from login_and_register_model import *
 from products_window_model import *
-
-
 
 class Root_Login:
 
@@ -26,14 +23,11 @@ class Root_Login:
 
 class Root_Product:
 
-
-
     def __init__(self,all_tenats):
 
         self.all_tenats = all_tenats
         self.app_product_panel = None
         self.main_product_window()
-
 
     def main_product_window(self):
 
