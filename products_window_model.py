@@ -5,6 +5,7 @@ from datetime import *
 
 data = {}
 
+
 class Products(Frame):
 
     def __init__(self,master=None):
@@ -94,12 +95,20 @@ class Products(Frame):
         price_product = self.price_entry.get()
         date_product = str(date.today())
 
-        data.clear()
-        data["name_product"] = name_product
-        data["quantity_product"] = quantity_product
-        data["weight_product"] = weight_product
-        data["price_product"] = price_product
-        data["date_product"] = date_product
+        # data.clear()
+        if name_product not in data:
+            data[name_product] = [{"quantity_product" : quantity_product,
+                                    "weight_product" : weight_product,
+                                    "price_product" : price_product,
+                                    "date_product" : date_product}]
+        else:
+            data[name_product].append({"quantity_product" : quantity_product,
+                                    "weight_product" : weight_product,
+                                    "price_product" : price_product,
+                                    "date_product" : date_product})
+
+
+
 
 
 
