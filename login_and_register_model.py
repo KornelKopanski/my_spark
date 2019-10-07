@@ -4,6 +4,8 @@ from tkinter.messagebox import *
 category = {"Spożywcze":{},
             "Przemysłowe":{}}
 
+user_login = []
+
 class Login(Frame):
 
     def __init__(self,master,all_tenants,all_tenants_shoping,index_window=0):
@@ -40,6 +42,7 @@ class Login(Frame):
 
         self.login = self.name_entry.get()
         self.password = self.password_entry.get()
+        user_login.append(self.login)
 
         if self.login in self.all_tenants:
             if self.password == self.all_tenants[self.login]:

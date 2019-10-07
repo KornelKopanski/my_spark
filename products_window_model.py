@@ -2,9 +2,10 @@
 from tkinter import *
 from tkinter import ttk
 from datetime import *
+from save_to_dictionary import *
 
-data = {}
-
+category_shopping =  {"Spożywcze":{},
+                      "Przemysłowe":{}}
 
 class Products(Frame):
 
@@ -80,8 +81,6 @@ class Products(Frame):
         self.scrollbar_product_window.place(in_ = self.main_products_window, relx = 1., rely = 0, relheight = 1.)
         self.scrollbar_product_window.config(command = self.main_products_window.yview)
 
-
-
     def create_listbox(self):
 
         self.main_products_window = Listbox(self,width=70,height=25)
@@ -94,23 +93,9 @@ class Products(Frame):
         weight_product = self.weight_spinbox.get()
         price_product = self.price_entry.get()
         date_product = str(date.today())
+        category = self.category_combobox.get()
 
-        # data.clear()
-        if name_product not in data:
-            data[name_product] = [{"quantity_product" : quantity_product,
-                                    "weight_product" : weight_product,
-                                    "price_product" : price_product,
-                                    "date_product" : date_product}]
-        else:
-            data[name_product].append({"quantity_product" : quantity_product,
-                                    "weight_product" : weight_product,
-                                    "price_product" : price_product,
-                                    "date_product" : date_product})
-
-
-
-
-
+        save(category,name_product,category_shopping,quantity_product,weight_product,price_product,date_product)
 
     def create_button(self):
 
