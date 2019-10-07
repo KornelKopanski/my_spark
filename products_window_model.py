@@ -3,9 +3,12 @@ from tkinter import *
 from tkinter import ttk
 from datetime import *
 from save_to_dictionary import *
+from login_and_register_model import user_login
 
 category_shopping =  {"Spożywcze":{},
                       "Przemysłowe":{}}
+
+all_shopping = {}
 
 class Products(Frame):
 
@@ -96,6 +99,14 @@ class Products(Frame):
         category = self.category_combobox.get()
 
         save(category,name_product,category_shopping,quantity_product,weight_product,price_product,date_product)
+
+        login = user_login[0]
+        all_shopping[login] = category_shopping
+
+        for user in all_shopping:
+            for categ in all_shopping[user]:
+                for product in all_shopping[user][categ]:
+                    self.main_products_window.insert(END,f"         {product}")
 
     def create_button(self):
 
