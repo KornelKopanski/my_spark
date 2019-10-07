@@ -23,6 +23,7 @@ class Products(Frame):
         self.create_entry()
         self.create_spinbox()
         self.create_scrollbar()
+        self.create_show()
 
     def create_label(self):
 
@@ -103,10 +104,27 @@ class Products(Frame):
         login = user_login[0]
         all_shopping[login] = category_shopping
 
+        self.main_products_window.delete(0,END)
         for user in all_shopping:
-            for categ in all_shopping[user]:
-                for product in all_shopping[user][categ]:
-                    self.main_products_window.insert(END,f"         {product}")
+            self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
+            for category_product in all_shopping[user]:
+                self.main_products_window.insert(END, f"                                      {category_product}:")
+                for product in all_shopping[user][category_product]:
+                    self.main_products_window.insert(END, f"                                                        {product}")
+
+    def create_show(self):
+
+        login = user_login[0]
+        all_shopping[login] = category_shopping
+
+        self.main_products_window.delete(0, END)
+        for user in all_shopping:
+            self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
+            for category_product in all_shopping[user]:
+                self.main_products_window.insert(END, f"                                      {category_product}:")
+                for product in all_shopping[user][category_product]:
+                    self.main_products_window.insert(END,
+                                                     f"                                                        {product}")
 
     def create_button(self):
 
