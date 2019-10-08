@@ -123,7 +123,13 @@ class Products(Frame):
 
     def create_show(self):
 
+        with open("AccountOAll.json", "r")  as my_file:
+            lista = json.load(my_file)
 
+            for i in lista:
+                key = i
+                value = lista[i]
+                all_shopping[key] = value
 
         self.main_products_window.delete(0, END)
         for user in all_shopping:
