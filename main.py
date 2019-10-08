@@ -1,7 +1,17 @@
 
 from root_windows_models import *
+import json
 
 all_tenants = {}
+
+#Odczyt danych logowania
+with open("AccountOLogin.json", "r")  as my_file:
+    lista = json.load(my_file)
+
+    for i in lista:
+        key = i
+        value = lista[i]
+        all_tenants[key] = value
 
 all_tenants_shopping = {}
 
@@ -11,8 +21,12 @@ if root_login.app_login_panel.index_window == 1:
 
     root_product = Root_Product(all_tenants)
 
+all_tenants_shopping = all_shopping
 
-login = user_login[0]
-all_tenants_shopping[login] = category_shopping
+#zapis danych logowania lokatora
+with open("AccountOLogin.json","w")  as file:
+    json.dump(all_tenants,file)
 
-print(all_tenants_shopping)
+# zapis zakupów
+with open("AccountOAll.json","w")  as my_file:
+    json.dump(all_tenants_shopping,my_file)

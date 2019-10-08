@@ -4,11 +4,20 @@ from tkinter import ttk
 from datetime import *
 from save_to_dictionary import *
 from login_and_register_model import user_login
+import json
 
 category_shopping =  {"Spożywcze":{},
                       "Przemysłowe":{}}
 
 all_shopping = {}
+
+with open("AccountOAll.json", "r")  as my_file:
+    lista = json.load(my_file)
+
+    for i in lista:
+        key = i
+        value = lista[i]
+        all_shopping[key] = value
 
 class Products(Frame):
 
@@ -110,12 +119,11 @@ class Products(Frame):
             for category_product in all_shopping[user]:
                 self.main_products_window.insert(END, f"                                      {category_product}:")
                 for product in all_shopping[user][category_product]:
-                    self.main_products_window.insert(END, f"                                                        {product}")
+                    self.main_products_window.insert(END, f"                                                            {product}")
 
     def create_show(self):
 
-        login = user_login[0]
-        all_shopping[login] = category_shopping
+
 
         self.main_products_window.delete(0, END)
         for user in all_shopping:
@@ -124,7 +132,7 @@ class Products(Frame):
                 self.main_products_window.insert(END, f"                                      {category_product}:")
                 for product in all_shopping[user][category_product]:
                     self.main_products_window.insert(END,
-                                                     f"                                                        {product}")
+                                                     f"                                                            {product}")
 
     def create_button(self):
 
