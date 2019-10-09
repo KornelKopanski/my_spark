@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.messagebox import *
+import json
 
 category = {"Spożywcze":{},
             "Przemysłowe":{}}
@@ -48,6 +49,19 @@ class Login(Frame):
             if self.password == self.all_tenants[self.login]:
                 self.index_window += 1
                 self.master.destroy()
+                if self.login not in self.all_tenants_shoping:
+
+                    with open("AccountOAll.json", "r")  as my_file:
+                        lista = json.load(my_file)
+                        for i in lista:
+                            key = i
+                            value = lista[i]
+                            self.all_tenants_shoping[key] = value
+
+                    self.all_tenants_shoping[self.login] = category
+
+                    with open("AccountOAll.json", "w")  as my_file:
+                        json.dump(self.all_tenants_shoping, my_file)
             else:
                 showinfo("Uwaga!", "Nie poprawne hasło!")
         else:
@@ -63,7 +77,6 @@ class Login(Frame):
         else:
             if self.password:
                 self.all_tenants[self.login] = self.password
-                self.all_tenants_shoping[self.login] = category
                 showinfo("Informacja", "Rejestracja przbiegła pomyślnie!\nNależy się zalogować!")
             else:
                 showinfo("Uwaga!", "Proszę wprowadzić hasło!")

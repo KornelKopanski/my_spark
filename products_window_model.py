@@ -3,21 +3,9 @@ from tkinter import *
 from tkinter import ttk
 from datetime import *
 from save_to_dictionary import *
-from login_and_register_model import user_login
 import json
 
-category_shopping =  {"Spożywcze":{},
-                      "Przemysłowe":{}}
-
 all_shopping = {}
-
-with open("AccountOAll.json", "r")  as my_file:
-    lista = json.load(my_file)
-
-    for i in lista:
-        key = i
-        value = lista[i]
-        all_shopping[key] = value
 
 class Products(Frame):
 
@@ -106,14 +94,14 @@ class Products(Frame):
         weight_product = self.weight_spinbox.get()
         price_product = self.price_entry.get()
         date_product = str(date.today())
-        category = self.category_combobox.get()
+        category_get = self.category_combobox.get()
 
-        save(category,name_product,category_shopping,quantity_product,weight_product,price_product,date_product)
+        save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
 
-        login = user_login[0]
-        all_shopping[login] = category_shopping
+        with open("AccountOAll.json", "w")  as my_file:
+            json.dump(all_shopping, my_file)
 
-        self.main_products_window.delete(0,END)
+        self.main_products_window.delete(0, END)
         for user in all_shopping:
             self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
             for category_product in all_shopping[user]:
