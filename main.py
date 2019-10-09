@@ -25,8 +25,4 @@ all_tenants_shopping = all_shopping
 
 #zapis danych logowania lokatora
 with open("AccountOLogin.json","w")  as file:
-    json.dump(all_tenants,file)
-#
-# # zapis zakupów
-# with open("AccountOAll.json","w")  as my_file:
-#     json.dump(all_tenants_shopping,my_file)
+    json.dump(all_tenants,file,indent=2)

@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from datetime import *
 from save_to_dictionary import *
+from calculation_data import Calc
 import json
 
 all_shopping = {}
@@ -99,7 +100,10 @@ class Products(Frame):
         save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
 
         with open("AccountOAll.json", "w")  as my_file:
-            json.dump(all_shopping, my_file)
+            json.dump(all_shopping, my_file,indent=2)
+
+        calc = Calc(all_shopping)
+        calc.calc_quantity_product()
 
         self.main_products_window.delete(0, END)
         for user in all_shopping:
