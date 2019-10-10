@@ -62,7 +62,7 @@ class Login(Frame):
                     self.all_tenants_shoping[self.login] = category
 
                     with open("AccountOAll.json", "w")  as my_file:
-                        json.dump(self.all_tenants_shoping, my_file)
+                        json.dump(self.all_tenants_shoping, my_file,indent=2)
 
             else:
                 showinfo("Uwaga!", "Nie poprawne hasło!")

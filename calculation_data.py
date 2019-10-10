@@ -1,50 +1,57 @@
 import json
 
+
 class Calc:
+    data_quantity = {}
 
-    _sum_info = {}
+    all_shopping = {}
 
-    def __init__(self,all_shopping):
+    def segregation_quan(self):
 
-        self.all_shopping = all_shopping
+        with open("AccountOAll.json", "r")  as my_file:
+            lista = json.load(my_file)
 
-    def _quantity(self):
+            for i in lista:
+                key = i
+                value = lista[i]
+                self.all_shopping[key] = value
 
+        self.data_quantity.clear()
         for user in self.all_shopping:
             for category in self.all_shopping[user]:
                 for product in self.all_shopping[user][category]:
                     for data in self.all_shopping[user][category][product]:
                         for info in data:
-                            if info == "quantity_product":
-                                if user not in self._sum_info:
-                                    self._sum_info[user] = {product: [int(data[info])]}
+                            if info == 'quantity_product':
+                                if user not in self.data_quantity:
+                                    self.data_quantity[user] = {product: [int(data[info])]}
                                 else:
-                                    if product in self._sum_info[user]:
-                                        self._sum_info[user][product].append(int(data[info]))
+                                    if product not in self.data_quantity[user]:
+                                        self.data_quantity[user][product] = [int(data[info])]
                                     else:
-                                        self._sum_info[user][product] = [int(data[info])]
+                                        self.data_quantity[user][product].append(int(data[info]))
 
-    def _assign(self):
+    def assign(self):
 
-        for user in self.all_shopping:
-            for login in self._sum_info:
-                if user == login:
-                    for category in self.all_shopping[user]:
-                        for product in self.all_shopping[user][category]:
-                            for data in self.all_shopping[user][category][product]:
-                                for info in data:
-                                    if info == "sum_shopping":
-                                        if info in data:
-                                            for quantity_product in self._sum_info[login]:
-                                                if quantity_product == product:
-                                                    data[info] = sum(self._sum_info[login][quantity_product])
+
+        for user in self.data_quantity:
+            for product in self.data_quantity[user]:
+                for login in self.all_shopping:
+                    if user == login:
+                        for category in self.all_shopping[login]:
+                            for item_product in self.all_shopping[login][category]:
+                                if product == item_product:
+                                    for data in self.all_shopping[login][category][item_product]:
+                                        for info in data:
+                                            if info == "sum_shopping":
+                                                data[info] = sum(self.data_quantity[user][product])
 
         with open("AccountOAll.json", "w")  as my_file:
             json.dump(self.all_shopping, my_file, indent=2)
 
-    def calc_quantity_product(self):
 
-        self._quantity()
-        self._assign()
+    def done(self):
 
+        self.segregation_quan()
+        self.assign()
 

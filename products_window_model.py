@@ -102,8 +102,8 @@ class Products(Frame):
         with open("AccountOAll.json", "w")  as my_file:
             json.dump(all_shopping, my_file,indent=2)
 
-        calc = Calc(all_shopping)
-        calc.calc_quantity_product()
+        calc = Calc()
+        calc.done()
 
         self.main_products_window.delete(0, END)
         for user in all_shopping:
