@@ -127,6 +127,11 @@ class Products(Frame):
                                 self.main_products_window.insert(END,
                                                                  f"                                                                        "
                                                                  f"      Ilość sztuk: {str(data[item])}")
+                            for info in data:
+                                if info == "sum_price":
+                                    self.main_products_window.insert(END,
+                                                                     f"                                                                        "
+                                                                     f"      Łączna cena(zł): {str(data[info])}")
 
     def create_show(self):
 
@@ -152,6 +157,12 @@ class Products(Frame):
                                 self.main_products_window.insert(END,
                                                                  f"                                                                        "
                                                                  f"      Ilość sztuk: {str(data[item])}")
+                            for info in data:
+                                if info == "sum_price":
+                                    self.main_products_window.insert(END,
+                                                                     f"                                                                        "
+                                                                     f"      Łączna cena(zł): {str(data[info])}")
+
     def create_button(self):
 
         self.calculation_batton = Button(self, text="Oblicz", width=30)
