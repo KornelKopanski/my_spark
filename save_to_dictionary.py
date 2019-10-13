@@ -21,7 +21,8 @@ def save(all_shopping, category_get, name_product, quantity_product,
             all_shopping[login]["Spożywcze"][name_product] = [{"quantity_product": quantity_product,
                                                                     "weight_product": weight_product,
                                                                     "price_product": price_product,
-                                                                    "date_product": date_product},{"sum_shopping":{}}]
+                                                                    "date_product": date_product},{"sum_shopping":{}},
+                                                              {"sum_price":None}]
         else:
             all_shopping[login]["Spożywcze"][name_product].append({"quantity_product": quantity_product,
                                                                         "weight_product": weight_product,
@@ -32,7 +33,8 @@ def save(all_shopping, category_get, name_product, quantity_product,
             all_shopping[login]["Przemysłowe"][name_product] = [{"quantity_product": quantity_product,
                                                                       "weight_product": weight_product,
                                                                       "price_product": price_product,
-                                                                      "date_product": date_product},{"sum_shopping":{}}]
+                                                                      "date_product": date_product},{"sum_shopping":{}},
+                                                                {"sum_price":None}]
         else:
             all_shopping[login]["Przemysłowe"][name_product].append({"quantity_product": quantity_product,
                                                                           "weight_product": weight_product,

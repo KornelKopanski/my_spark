@@ -34,7 +34,7 @@ class Products(Frame):
         self.product_label = Label(self,text="Produkt")
         self.product_label.grid(row=3,column=1)
 
-        self.price_label = Label(self,text="Cena")
+        self.price_label = Label(self,text="Cena(szt/kg)")
         self.price_label.grid(row=4,column=1)
 
         self.quantity_label = Label(self,text="Ilość(szt.)")
@@ -104,6 +104,7 @@ class Products(Frame):
 
         calc = Calc()
         calc.done()
+        calc.init_calc_price()
 
         with open("AccountOAll.json", "r")  as my_file:
             lista = json.load(my_file)
