@@ -174,8 +174,8 @@ class Products(Frame):
         self.remove_product_button = Button(self,text="Usuń produkt",width=32)
         self.remove_product_button.grid(row=9,column=1,columnspan=2,sticky=E)
 
-
-
+        self.info_product_button = Button(self,text="Szczegóły produktu",width=32)
+        self.info_product_button.grid(row=10,column=1,columnspan=2,sticky=E)
 
 
 
