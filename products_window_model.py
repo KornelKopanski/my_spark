@@ -163,6 +163,20 @@ class Products(Frame):
                                                                      f"                                                                        "
                                                                      f"      Łączna cena(zł): {str(data[info])}")
 
+    def product_info_window(self):  # dodatkowe okno
+        Toplevel = Tk()
+
+        Toplevel.geometry("350x300")
+        Toplevel.title("Informacje o produkcie")
+
+        app = Frame(Toplevel)
+        app.pack()
+
+        info_window = Listbox(app, width=57, height=19)
+        info_window.pack()
+
+        Toplevel.mainloop()
+
     def create_button(self):
 
         self.calculation_batton = Button(self, text="Oblicz", width=30)
@@ -174,8 +188,9 @@ class Products(Frame):
         self.remove_product_button = Button(self,text="Usuń produkt",width=32)
         self.remove_product_button.grid(row=9,column=1,columnspan=2,sticky=E)
 
-        self.info_product_button = Button(self,text="Szczegóły produktu",width=32)
+        self.info_product_button = Button(self,text="Szczegóły produktu",width=32,command=self.product_info_window)
         self.info_product_button.grid(row=10,column=1,columnspan=2,sticky=E)
+
 
 
 
