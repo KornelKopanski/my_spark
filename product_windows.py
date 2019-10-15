@@ -47,7 +47,7 @@ class InfoWindow:
         product_info_button = Button(app, text="Szczegóły produktu", width=30,command = self.product_details)
         product_info_button.grid(row=4, column=0,pady=3,padx=3)
 
-        all_products_info_button = Button(app, text="Szczegóły wszystkich produktów", width=30)
+        all_products_info_button = Button(app, text="Szczegóły wszystkich produktów", width=30,command=self.all_products_details)
         all_products_info_button.grid(row=5, column=0,pady=3,padx=3)
 
         sb_info_window = Scrollbar(app_listbox)
@@ -138,6 +138,41 @@ class InfoWindow:
                                                     if i == "price_product":
                                                         self.info_window.insert(END,
                                                                                 f"                                             Cena za (szt/kg): {data[i]} zł")
+    def all_products_details(self):
+
+        tenant = self.user_combobox.get()
+
+        self.info_window.delete(0, END)
+        for user in self.all_shopping:
+            if user == tenant:
+                for category in self.all_shopping[user]:
+                    self.info_window.insert(END, category)
+                    for product in self.all_shopping[user][category]:
+                        self.info_window.insert(END,f"                  {product}:")
+                        for data in self.all_shopping[user][category][product]:
+                            for info in data:
+                                if info == "date_product":
+                                    self.info_window.insert(END, f"")
+                                    self.info_window.insert(END,
+                                                            f"                          Data zakupu: {data[info]}")
+                                    self.info_window.insert(END, f"")
+                                    for i in data:
+                                        if i == "quantity_product":
+                                            if data[i] != "0":
+                                                self.info_window.insert(END,
+                                                                        f"                                              Ilość: {data[i]} szt.")
+                                    for i in data:
+                                        if i == "weight_product":
+                                            if data[i] != "0":
+                                                self.info_window.insert(END,
+                                                                        f"                                             Waga: {data[i]} kg")
+                                    for i in data:
+                                        if i == "price_product":
+                                            self.info_window.insert(END,
+                                                                    f"                                             Cena za (szt/kg): {data[i]} zł")
+
+
+
 
 
 
