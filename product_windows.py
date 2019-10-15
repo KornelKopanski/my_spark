@@ -1,6 +1,7 @@
 
 from tkinter import *
 from tkinter import ttk
+from login_and_register_model import user_login
 
 class InfoWindow:
 
@@ -8,10 +9,10 @@ class InfoWindow:
 
         self.main_products_window = main_products_window
         self.all_shopping = all_shopping
+        self.index = None
 
     def product_info_window(self):  # dodatkowe okno
 
-        info_product = self.main_products_window.get("active")
 
         tenant = []
 
@@ -29,15 +30,17 @@ class InfoWindow:
         app_listbox = Frame(app)
         app_listbox.grid(row=2,column=0,pady=3,padx=3)
 
-        user_combobox = ttk.Combobox(app, values=tenant, width=30)
-        user_combobox.current(0)
-        user_combobox.grid(row=0, column=0,pady=3,padx=3)
+        self.check_index(tenant)
+        self.user_combobox = ttk.Combobox(app, values=tenant, width=30)
+        self.user_combobox.current(self.index)
+        self.user_combobox.grid(row=0, column=0,pady=3,padx=3)
 
-        category_combobox = ttk.Combobox(app, values=["Spożywcze","Przemysłowe"], width=30)
-        category_combobox.current(0)
-        category_combobox.grid(row=1, column=0,pady=3,padx=3)
 
-        products_button = Button(app, text="Pokaż produkty", width=30)
+        self.category_combobox = ttk.Combobox(app, values=["Spożywcze","Przemysłowe","Wszystkie"], width=30)
+        self.category_combobox.current(2)
+        self.category_combobox.grid(row=1, column=0,pady=3,padx=3)
+
+        products_button = Button(app, text="Pokaż produkty", width=30,command=self.show_products)
         products_button.grid(row=3, column=0,pady=3,padx=3)
 
         product_info_button = Button(app, text="Szczegóły produktu", width=30)
@@ -48,11 +51,51 @@ class InfoWindow:
 
         sb_info_window = Scrollbar(app_listbox)
 
-        info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
-        info_window.pack(side = LEFT, fill = BOTH)
+        self.info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
+        self.info_window.pack(side = LEFT, fill = BOTH)
 
 
-        sb_info_window.config(command=info_window.yview)
+        sb_info_window.config(command=self.info_window.yview)
         sb_info_window.pack(side=RIGHT, fill=Y)
 
+        self.show_products()
+
         Toplevel.mainloop()
+
+    def show_products(self):
+
+        login = self.user_combobox.get()
+
+        category_get = self.category_combobox.get()
+
+        self.info_window.delete(0, END)
+        for user in self.all_shopping:
+            if user == login:
+                for category in self.all_shopping[user]:
+                    if category == category_get:
+                        self.info_window.insert(END, f"{category}:")
+                        for product in self.all_shopping[user][category]:
+                            self.info_window.insert(END,f"                     {product}")
+                if category_get == "Wszystkie":
+                    for categor in self.all_shopping[user]:
+                        self.info_window.insert(END,f"{categor}:")
+                        for item in self.all_shopping[user][categor]:
+                            self.info_window.insert(END, f"                     {item}")
+
+    def check_index(self,tenant):
+
+        number = -1
+
+        for i in tenant:
+            number += 1
+            if i == user_login[0]:
+                self.index = number
+
+
+
+
+
+
+
+
+
