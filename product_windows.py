@@ -1,4 +1,4 @@
-
+import json
 from tkinter import *
 from tkinter import ttk
 from login_and_register_model import user_login
@@ -171,7 +171,89 @@ class InfoWindow:
                                             self.info_window.insert(END,
                                                                     f"                                             Cena za (szt/kg): {data[i]} zł")
 
+#FAZA ROZWOJU
+class SumAll:
+    _all_shopping = {}
 
+    def _read(self):
+
+        with open("AccountOAll.json", "r")  as my_file:
+            lista = json.load(my_file)
+
+            for i in lista:
+                key = i
+                value = lista[i]
+                self._all_shopping[key] = value
+
+    def _write(self):
+
+        with open("AccountOAll.json", "w")  as my_file:
+            json.dump(self._all_shopping, my_file, indent=2)
+
+    def _sum_tenant(self):
+
+        self._read()
+
+        for user in self._all_shopping:
+            self._all_shopping[user].setdefault("all_sum", 0)
+            for category in self._all_shopping[user]:
+                if category != "all_sum":
+                    for product in self._all_shopping[user][category]:
+                        for data in self._all_shopping[user][category][product]:
+                            for item in data:
+                                if item == "sum_price":
+                                    self._all_shopping[user]["all_sum"] += data[item]
+
+        self._write()
+
+    def done(self):
+
+        self._sum_tenant()
+
+
+class CalculateWindow(SumAll):
+
+    def product_info_window(self):  # dodatkowe okno
+
+        tenant = []
+
+        for user in self._all_shopping:
+            tenant.append(user)
+
+        Toplevel = Tk()
+
+        Toplevel.geometry("379x470")
+        Toplevel.title("Rozliczenie lokatorów")
+
+        app = Frame(Toplevel)
+        app.grid(pady=5, padx=5)
+
+        app_listbox = Frame(app)
+        app_listbox.grid(row=2, column=0, pady=3, padx=3)
+
+        self.check_index(tenant)
+        self.user_combobox = ttk.Combobox(app, values=tenant, width=30)
+        self.user_combobox.current(self.index)
+        self.user_combobox.grid(row=0, column=0, pady=3, padx=3)
+
+        sb_info_window = Scrollbar(app_listbox)
+
+        self.info_window = Listbox(app_listbox, width=57, height=19, yscrollcommand=sb_info_window.set)
+        self.info_window.pack(side=LEFT, fill=BOTH)
+
+        sb_info_window.config(command=self.info_window.yview)
+        sb_info_window.pack(side=RIGHT, fill=Y)
+
+        Toplevel.mainloop()
+
+    def check_index(self, tenant):
+
+        number = -1
+
+        for i in tenant:
+            number += 1
+            if i == user_login[0]:
+                self.index = number
 
 
 
