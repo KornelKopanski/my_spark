@@ -106,6 +106,8 @@ class Products(Frame):
         calc = Calc()
         calc.done()
         calc.init_calc_price()
+        sum_shopping = SumAll()
+
 
         with open("AccountOAll.json", "r")  as my_file:
             lista = json.load(my_file)
@@ -133,6 +135,7 @@ class Products(Frame):
                                     self.main_products_window.insert(END,
                                                                      f"                                                                        "
                                                                      f"      Łączna cena(zł): {str(data[info])}")
+        sum_shopping.done()
 
     def create_show(self):
 
@@ -167,7 +170,8 @@ class Products(Frame):
 
     def create_button(self):
 
-        self.calculation_button = Button(self, text="Oblicz", width=30)
+        sum_all = SumAll()
+        self.calculation_button = Button(self, text="Oblicz", width=30,command=sum_all.done_window)
         self.calculation_button.grid(row=72, column=0)
 
         self.add_product_button = Button(self,text="Dodaj produkt",width=32,command=self.create_get_data)

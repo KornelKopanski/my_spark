@@ -214,6 +214,44 @@ class SumAll:
         self._sum_tenant()
 
 
+    def product_info_window(self):
+
+
+        Toplevel = Tk()
+
+        Toplevel.geometry("379x470")
+        Toplevel.title("Rozliczenie lokatorów")
+
+        app = Frame(Toplevel)
+        app.grid(pady=5,padx=5)
+
+        app_listbox = Frame(app)
+        app_listbox.grid(row=2,column=0,pady=3,padx=3)
+
+
+        sb_info_window = Scrollbar(app_listbox)
+
+        self.info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
+        self.info_window.pack(side = LEFT, fill = BOTH)
+
+
+        sb_info_window.config(command=self.info_window.yview)
+        sb_info_window.pack(side=RIGHT, fill=Y)
+
+
+        Toplevel.mainloop()
+
+    def done_window(self):
+
+        self.product_info_window()
+
+
+
+
+
+
+
+
 
 
 
