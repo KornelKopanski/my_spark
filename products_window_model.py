@@ -27,6 +27,9 @@ class Products(Frame):
         self.label_products_window = Label(self,text="Zakupy lokatorów")
         self.label_products_window.grid(row=1,column=0,pady=5,padx=60,sticky=S)
 
+        self.label_user = Label(self,text=f"Zalogowano jako: {user_login[0]}")
+        self.label_user.grid(row=1,column=1,columnspan=2)
+
         self.label_category = Label(self,text="Kategoria",width=10)
         self.label_category.grid(row=2,column=1)
 
@@ -98,44 +101,53 @@ class Products(Frame):
         date_product = str(date.today())
         category_get = self.category_combobox.get()
 
-        save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
+        if name_product:
+            if price_product:
+                if quantity_product != "0" or weight_product != "0":
 
-        with open("AccountOAll.json", "w")  as my_file:
-            json.dump(all_shopping, my_file,indent=2)
+                    save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
 
-        calc = Calc()
-        calc.done()
-        calc.init_calc_price()
-        sum_shopping = SumAll()
+                    with open("AccountOAll.json", "w")  as my_file:
+                        json.dump(all_shopping, my_file,indent=2)
 
+                    calc = Calc()
+                    calc.done()
+                    calc.init_calc_price()
+                    sum_shopping = SumAll()
 
-        with open("AccountOAll.json", "r")  as my_file:
-            lista = json.load(my_file)
+                    with open("AccountOAll.json", "r")  as my_file:
+                        lista = json.load(my_file)
 
-            for i in lista:
-                key = i
-                value = lista[i]
-                all_shopping[key] = value
+                        for i in lista:
+                            key = i
+                            value = lista[i]
+                            all_shopping[key] = value
 
-        self.main_products_window.delete(0, END)
-        for user in all_shopping:
-            self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
-            for category_product in all_shopping[user]:
-                self.main_products_window.insert(END, f"                                      {category_product}:")
-                for product in all_shopping[user][category_product]:
-                    self.main_products_window.insert(END, f"                                                              {product}")
-                    for data in all_shopping[user][category_product][product]:
-                        for item in data:
-                            if item == "sum_shopping":
-                                self.main_products_window.insert(END,
-                                                                 f"                                                                        "
-                                                                 f"      Ilość sztuk: {str(data[item])}")
-                            for info in data:
-                                if info == "sum_price":
-                                    self.main_products_window.insert(END,
-                                                                     f"                                                                        "
-                                                                     f"      Łączna cena(zł): {str(data[info])}")
-        sum_shopping.done()
+                    self.main_products_window.delete(0, END)
+                    for user in all_shopping:
+                        self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
+                        for category_product in all_shopping[user]:
+                            self.main_products_window.insert(END, f"                                      {category_product}:")
+                            for product in all_shopping[user][category_product]:
+                                self.main_products_window.insert(END, f"                                                              {product}")
+                                for data in all_shopping[user][category_product][product]:
+                                    for item in data:
+                                        if item == "sum_shopping":
+                                            self.main_products_window.insert(END,
+                                                                             f"                                                                        "
+                                                                             f"      Ilość sztuk: {str(data[item])}")
+                                        for info in data:
+                                            if info == "sum_price":
+                                                self.main_products_window.insert(END,
+                                                                                 f"                                                                        "
+                                                                                 f"      Łączna cena(zł): {str(data[info])}")
+                    sum_shopping.done()
+                else:
+                    showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
+            else:
+                showinfo("Uwaga!", "Proszę wprowadzić cenę!")
+        else:
+            showinfo("Uwaga!","Proszę wprowadzić produkt!")
 
     def create_show(self):
 
@@ -171,8 +183,8 @@ class Products(Frame):
     def create_button(self):
 
         sum_all = SumAll()
-        self.calculation_button = Button(self, text="Oblicz", width=30,command=sum_all.done_window)
-        self.calculation_button.grid(row=72, column=0)
+        self.calculation_button = Button(self, text="Rozlicz lokatorów", width=32,command=sum_all.done_window)
+        self.calculation_button.grid(row=11, column=1,columnspan=2,sticky=E)
 
         self.add_product_button = Button(self,text="Dodaj produkt",width=32,command=self.create_get_data)
         self.add_product_button.grid(row=8,column=1,columnspan=2,sticky=E)
@@ -183,6 +195,12 @@ class Products(Frame):
         product_info = InfoWindow(self.main_products_window,all_shopping)
         self.info_product_button = Button(self,text="Szczegóły produktu",width=32,command=product_info.product_info_window)
         self.info_product_button.grid(row=10,column=1,columnspan=2,sticky=E)
+
+        self.log_out = Button(self,text=f"Wyloguj się ({user_login[0]})",width=32)
+        self.log_out.grid(row=12, column=1,columnspan=2,sticky=E)
+
+        self.exit_window = Button(self, text="Zamknij", width=32)
+        self.exit_window.grid(row=13, column=1, columnspan=2, sticky=E)
 
 
 

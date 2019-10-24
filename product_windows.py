@@ -225,8 +225,11 @@ class SumAll:
         app = Frame(Toplevel)
         app.grid(pady=5,padx=5)
 
+        name_user = Label(app,text=f"Lokator {user_login[0]}")
+        name_user.grid(row=0,column=0)
+
         app_listbox = Frame(app)
-        app_listbox.grid(row=2,column=0,pady=3,padx=3)
+        app_listbox.grid(row=1,column=0,pady=3,padx=3)
 
 
         sb_info_window = Scrollbar(app_listbox)
