@@ -205,7 +205,7 @@ class Products(Frame):
         self.log_out = Button(self,text=f"Wyloguj się ({user_login[0]})",width=32,command=self._log_out)
         self.log_out.grid(row=12, column=1,columnspan=2,sticky=E)
 
-        self.exit_window = Button(self, text="Zamknij", width=32)
+        self.exit_window = Button(self, text="Zamknij", width=32,command=self.master.destroy)
         self.exit_window.grid(row=13, column=1, columnspan=2, sticky=E)
 
 
