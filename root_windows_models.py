@@ -23,7 +23,7 @@ class Root_Login:
 
 class Root_Product:
 
-    def __init__(self,all_tenats):
+    def __init__(self,all_tenats=None):
 
         self.all_tenats = all_tenats
         self.app_product_panel = None
@@ -31,11 +31,17 @@ class Root_Product:
 
     def main_product_window(self):
 
-        root_two = Tk()
-        root_two.title("Panel produktów")
-        root_two.geometry("800x530")
+        self.root_two = Tk()
+        self.root_two.title("Panel produktów")
+        self.root_two.geometry("800x530")
 
-        self.app_product_panel = Products(root_two)
+        self.app_product_panel = Products(self.root_two)
 
 
-        root_two.mainloop()
+        self.root_two.mainloop()
+
+    def root_destroy(self):
+
+        self.root_two.destroy()
+
+

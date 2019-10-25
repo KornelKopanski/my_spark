@@ -21,6 +21,7 @@ if root_login.app_login_panel.index_window == 1:
 
     root_product = Root_Product(all_tenants)
 
+
 all_tenants_shopping = all_shopping
 
 #zapis danych logowania lokatora

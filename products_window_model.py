@@ -4,6 +4,7 @@ from datetime import *
 from save_to_dictionary import *
 from calculation_data import Calc
 from  product_windows import *
+from mechanism_login_register import *
 import json
 
 all_shopping = {}
@@ -179,6 +180,12 @@ class Products(Frame):
                                                                      f"                                                                        "
                                                                      f"      Łączna cena(zł): {str(data[info])}")
 
+    def _log_out(self):
+
+        self.master.destroy()
+        element_window = Window_Panel()
+        element_window.login_window()
+
 
     def create_button(self):
 
@@ -196,7 +203,8 @@ class Products(Frame):
         self.info_product_button = Button(self,text="Szczegóły produktu",width=32,command=product_info.product_info_window)
         self.info_product_button.grid(row=10,column=1,columnspan=2,sticky=E)
 
-        self.log_out = Button(self,text=f"Wyloguj się ({user_login[0]})",width=32)
+
+        self.log_out = Button(self,text=f"Wyloguj się ({user_login[0]})",width=32,command=self._log_out)
         self.log_out.grid(row=12, column=1,columnspan=2,sticky=E)
 
         self.exit_window = Button(self, text="Zamknij", width=32)
