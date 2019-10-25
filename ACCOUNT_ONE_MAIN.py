@@ -15,15 +15,24 @@ with open("AccountOLogin.json", "r")  as my_file:
 
 all_tenants_shopping = {}
 
-root_login = Root_Login(all_tenants,all_tenants_shopping)
+while True:
 
-if root_login.app_login_panel.index_window == 1:
+    root_login = Root_Login(all_tenants,all_tenants_shopping)
 
-    root_product = Root_Product(all_tenants)
+    if root_login.app_login_panel.index_window == 1:
+
+        root_product = Root_Product(all_tenants)
 
 
-all_tenants_shopping = all_shopping
 
-#zapis danych logowania lokatora
-with open("AccountOLogin.json","w")  as file:
-    json.dump(all_tenants,file,indent=2)
+    all_tenants_shopping = all_shopping
+
+    #zapis danych logowania lokatora
+    with open("AccountOLogin.json","w")  as file:
+        json.dump(all_tenants,file,indent=2)
+
+    if not number_x:
+        break
+    elif number_x[0] == 1:
+        number_x.clear()
+        continue

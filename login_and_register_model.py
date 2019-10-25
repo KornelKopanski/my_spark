@@ -43,6 +43,7 @@ class Login(Frame):
 
         self.login = self.name_entry.get()
         self.password = self.password_entry.get()
+        user_login.clear()
         user_login.append(self.login)
 
         if self.login in self.all_tenants:

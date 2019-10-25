@@ -4,10 +4,10 @@ from datetime import *
 from save_to_dictionary import *
 from calculation_data import Calc
 from  product_windows import *
-from mechanism_login_register import *
 import json
 
 all_shopping = {}
+number_x = []
 
 class Products(Frame):
 
@@ -183,9 +183,7 @@ class Products(Frame):
     def _log_out(self):
 
         self.master.destroy()
-        element_window = Window_Panel()
-        element_window.login_window()
-
+        number_x.append(1)
 
     def create_button(self):
 
