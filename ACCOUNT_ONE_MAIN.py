@@ -4,7 +4,6 @@ import json
 
 all_tenants = {}
 
-#Odczyt danych logowania
 with open("AccountOLogin.json", "r")  as my_file:
     lista = json.load(my_file)
 
@@ -23,11 +22,9 @@ while True:
 
         root_product = Root_Product(all_tenants)
 
-
-
     all_tenants_shopping = all_shopping
 
-    #zapis danych logowania lokatora
+
     with open("AccountOLogin.json","w")  as file:
         json.dump(all_tenants,file,indent=2)
 
