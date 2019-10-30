@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from login_and_register_model import user_login
 from tkinter.messagebox import *
+from sum_calculating_mechanism import *
 
 class InfoWindow:
 
@@ -236,6 +237,9 @@ class SumAll:
 
         self.info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
         self.info_window.pack(side = LEFT, fill = BOTH)
+
+        sum_calc = SumCalc()
+        sum_calc.show_calc_user(self.info_window)
 
 
         sb_info_window.config(command=self.info_window.yview)

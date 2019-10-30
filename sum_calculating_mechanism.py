@@ -1,11 +1,12 @@
 
+from tkinter import *
 import json
 
 class SumCalc:
 
     all_shopping = {}
     _sum = []
-    mid = None
+    mid_price = None
 
     def read(self):
 
@@ -30,14 +31,32 @@ class SumCalc:
             for number in self.all_shopping[user]:
                 self._sum.append(self.all_shopping[user][number])
 
-        self.mid =sum(self._sum)/nu
+        self.mid_price =sum(self._sum)/nu
 
     def done(self):
 
+        self.all_shopping.clear()
+        self._sum.clear()
+        self.mid_price = None
         self.read()
         self.calc()
 
+    def show_calc_user(self,info_window):
 
-s = SumCalc()
-s.done()
-print(s.mid)
+        self.done()
+
+        info_window.insert(END, f"Średnia cena zakupów na lokatora wynosi: {self.mid_price}")
+        for user in self.all_shopping:
+            for sum_price_user in self.all_shopping[user]:
+                if self.mid_price > self.all_shopping[user][sum_price_user]:
+                    x = float(self.mid_price) - float(self.all_shopping[user][sum_price_user])
+                    info_window.insert(END,f"{user}, włóż do 'pudełka' {x}zł ")
+                elif self.mid_price < self.all_shopping[user][sum_price_user]:
+                    y = float(self.all_shopping[user][sum_price_user]) - float(self.mid_price)
+                    info_window.insert(END, f"{user}, weź z 'pudełka' {y}zł ")
+                else:
+                    info_window.insert(END, f"{user}, jesteś rozliczony")
+
+
+
+
