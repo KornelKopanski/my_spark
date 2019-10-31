@@ -25,13 +25,14 @@ class SumCalc:
 
     def calc(self):
 
-        nu = 0
-        for user in self.all_shopping:
-            nu += 1
-            for number in self.all_shopping[user]:
-                self._sum.append(self.all_shopping[user][number])
+        if self.all_shopping:
+            nu = 0
+            for user in self.all_shopping:
+                nu += 1
+                for number in self.all_shopping[user]:
+                    self._sum.append(self.all_shopping[user][number])
 
-        self.mid_price =sum(self._sum)/nu
+            self.mid_price =sum(self._sum)/nu
 
     def done(self):
 

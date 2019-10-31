@@ -1,6 +1,5 @@
 
-import json
-from tkinter import *
+
 from tkinter import ttk
 from login_and_register_model import user_login
 from tkinter.messagebox import *
@@ -217,36 +216,43 @@ class SumAll:
 
     def product_info_window(self):
 
-
-        Toplevel = Tk()
-
-        Toplevel.geometry("379x470")
-        Toplevel.title("Rozliczenie lokatorów")
-
-        app = Frame(Toplevel)
-        app.grid(pady=5,padx=5)
-
-        name_user = Label(app,text=f"Lokator {user_login[0]}")
-        name_user.grid(row=0,column=0)
-
-        app_listbox = Frame(app)
-        app_listbox.grid(row=1,column=0,pady=3,padx=3)
-
-
-        sb_info_window = Scrollbar(app_listbox)
-
-        self.info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
-        self.info_window.pack(side = LEFT, fill = BOTH)
-
         sum_calc = SumCalc()
-        sum_calc.show_calc_user(self.info_window)
+
+        if not sum_calc.all_shopping:
+            sum_calc.done()
+
+        if sum_calc.all_shopping:
+            Toplevel = Tk()
+
+            Toplevel.geometry("379x470")
+            Toplevel.title("Rozliczenie lokatorów")
+
+            app = Frame(Toplevel)
+            app.grid(pady=5,padx=5)
+
+            name_user = Label(app,text=f"Lokator {user_login[0]}")
+            name_user.grid(row=0,column=0)
+
+            app_listbox = Frame(app)
+            app_listbox.grid(row=1,column=0,pady=3,padx=3)
 
 
-        sb_info_window.config(command=self.info_window.yview)
-        sb_info_window.pack(side=RIGHT, fill=Y)
+            sb_info_window = Scrollbar(app_listbox)
+
+            self.info_window = Listbox(app_listbox, width=57, height=19,yscrollcommand = sb_info_window.set)
+            self.info_window.pack(side = LEFT, fill = BOTH)
 
 
-        Toplevel.mainloop()
+            sum_calc.show_calc_user(self.info_window)
+
+
+            sb_info_window.config(command=self.info_window.yview)
+            sb_info_window.pack(side=RIGHT, fill=Y)
+
+
+            Toplevel.mainloop()
+        else:
+            showinfo("Uwaga","Brak zakupów!")
 
     def done_window(self):
 
