@@ -93,58 +93,78 @@ class Products(Frame):
         scrollbar_product_window.pack(side=RIGHT, fill=Y)
         scrollbar_product_window.config(command=self.main_products_window.yview)
 
+    def delete(self,v):
+        x = []
+        for i in v:
+            if i != ".":
+                x.append(i)
+
+        st = "".join(x)
+        return st
+
     def create_get_data(self):
 
         name_product = self.product_entry.get()
         quantity_product = self.quantity_spinbox.get()
         weight_product = self.weight_spinbox.get()
         price_product = self.price_entry.get()
+        price_product = price_product.replace(",",".")
         date_product = str(date.today())
         category_get = self.category_combobox.get()
 
+        price_number = self.delete(price_product)
+
         if name_product:
             if price_product:
-                if quantity_product != "0" or weight_product != "0":
+                c = price_product.count(".")
+                if c<=1:
+                    if price_number.isdigit():
 
-                    save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
+                        if quantity_product != "0" or weight_product != "0":
 
-                    with open("AccountOAll.json", "w")  as my_file:
-                        json.dump(all_shopping, my_file,indent=2)
+                            save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
 
-                    calc = Calc()
-                    calc.done()
-                    calc.init_calc_price()
-                    sum_shopping = SumAll()
+                            with open("AccountOAll.json", "w")  as my_file:
+                                json.dump(all_shopping, my_file,indent=2)
 
-                    with open("AccountOAll.json", "r")  as my_file:
-                        lista = json.load(my_file)
+                            calc = Calc()
+                            calc.done()
+                            calc.init_calc_price()
+                            sum_shopping = SumAll()
 
-                        for i in lista:
-                            key = i
-                            value = lista[i]
-                            all_shopping[key] = value
+                            with open("AccountOAll.json", "r")  as my_file:
+                                lista = json.load(my_file)
 
-                    self.main_products_window.delete(0, END)
-                    for user in all_shopping:
-                        self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
-                        for category_product in all_shopping[user]:
-                            self.main_products_window.insert(END, f"                                      {category_product}:")
-                            for product in all_shopping[user][category_product]:
-                                self.main_products_window.insert(END, f"                                                              {product}")
-                                for data in all_shopping[user][category_product][product]:
-                                    for item in data:
-                                        if item == "sum_shopping":
-                                            self.main_products_window.insert(END,
-                                                                             f"                                                                        "
-                                                                             f"      Ilość sztuk: {str(data[item])}")
-                                        for info in data:
-                                            if info == "sum_price":
-                                                self.main_products_window.insert(END,
-                                                                                 f"                                                                        "
-                                                                                 f"      Łączna cena(zł): {str(data[info])}")
-                    sum_shopping.done()
+                                for i in lista:
+                                    key = i
+                                    value = lista[i]
+                                    all_shopping[key] = value
+
+                            self.main_products_window.delete(0, END)
+                            for user in all_shopping:
+                                self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
+                                for category_product in all_shopping[user]:
+                                    self.main_products_window.insert(END, f"                                      {category_product}:")
+                                    for product in all_shopping[user][category_product]:
+                                        self.main_products_window.insert(END, f"                                                              {product}")
+                                        for data in all_shopping[user][category_product][product]:
+                                            for item in data:
+                                                if item == "sum_shopping":
+                                                    self.main_products_window.insert(END,
+                                                                                     f"                                                                        "
+                                                                                     f"      Ilość sztuk: {str(data[item])}")
+                                                for info in data:
+                                                    if info == "sum_price":
+                                                        self.main_products_window.insert(END,
+                                                                                         f"                                                                        "
+                                                                                         f"      Łączna cena(zł): {str(data[info])}")
+                            sum_shopping.done()
+                        else:
+                            showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
+                    else:
+                        showinfo("Uwaga!","Złe znaki! Proszę wprowadzić liczbę!")
                 else:
-                    showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
+                    showinfo("Uwaga!","Kropka lub przecinek może zostać użyte tylko raz!")
             else:
                 showinfo("Uwaga!", "Proszę wprowadzić cenę!")
         else:
