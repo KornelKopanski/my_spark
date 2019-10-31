@@ -1,6 +1,7 @@
 
 from tkinter import *
 import json
+import string_format
 
 class SumCalc:
 
@@ -46,25 +47,25 @@ class SumCalc:
 
         self.done()
 
-        info_window.insert(END, f"ŚREDNIA CENA ZAKUPÓW NA LOKATORA: {self.mid_price}zł")
+        info_window.insert(END, f"ŚREDNIA CENA ZAKUPÓW NA LOKATORA: {string_format.places(str(self.mid_price))}zł")
         for user in self.all_shopping:
             for sum_price_user in self.all_shopping[user]:
                 if self.mid_price > self.all_shopping[user][sum_price_user]:
                     x = float(self.mid_price) - float(self.all_shopping[user][sum_price_user])
                     info_window.insert(END, f"")
                     info_window.insert(END,
-                                       f"Zakupy lokatora {user} wynoszą: {self.all_shopping[user][sum_price_user]}zł")
-                    info_window.insert(END,f"{user}, włóż do 'pudełka':  {x}zł ")
+                                       f"Zakupy lokatora {user} wynoszą: {string_format.places(str(self.all_shopping[user][sum_price_user]))}zł")
+                    info_window.insert(END,f"{user}, włóż do 'pudełka':  {string_format.places(str(x))}zł ")
                 elif self.mid_price < self.all_shopping[user][sum_price_user]:
                     y = float(self.all_shopping[user][sum_price_user]) - float(self.mid_price)
                     info_window.insert(END, f"")
                     info_window.insert(END,
-                                       f"Zakupy lokatora {user} wynoszą: {self.all_shopping[user][sum_price_user]}zł")
-                    info_window.insert(END, f"{user}, weź z 'pudełka':  {y}zł ")
+                                       f"Zakupy lokatora {user} wynoszą: {string_format.places(str(self.all_shopping[user][sum_price_user]))}zł")
+                    info_window.insert(END, f"{user}, weź z 'pudełka':  {string_format.places(str(y))}zł ")
                 else:
                     info_window.insert(END, f"")
                     info_window.insert(END,
-                                       f"Zakupy lokatora {user} wynoszą: {self.all_shopping[user][sum_price_user]}zł")
+                                       f"Zakupy lokatora {user} wynoszą: {string_format.places(str(self.all_shopping[user][sum_price_user]))}zł")
                     info_window.insert(END, f"{user}, jesteś rozliczony")
 
 

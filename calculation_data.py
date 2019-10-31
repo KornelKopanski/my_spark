@@ -1,5 +1,5 @@
 import json
-
+import string_format
 
 class Calc:
     data_quantity = {}

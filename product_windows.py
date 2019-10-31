@@ -4,6 +4,7 @@ from tkinter import ttk
 from login_and_register_model import user_login
 from tkinter.messagebox import *
 from sum_calculating_mechanism import *
+import string_format
 
 class InfoWindow:
 
@@ -129,16 +130,16 @@ class InfoWindow:
                                                     if i == "quantity_product":
                                                         if data[i] != "0":
                                                             self.info_window.insert(END,
-                                                                                    f"                                              Ilość: {data[i]} szt.")
+                                                                                    f"                                              Ilość: {string_format.places(data[i])} szt.")
                                                 for i in data:
                                                     if i == "weight_product":
                                                         if data[i] != "0":
                                                             self.info_window.insert(END,
-                                                                                    f"                                             Waga: {data[i]} kg")
+                                                                                    f"                                             Waga: {string_format.places(data[i])} kg")
                                                 for i in data:
                                                     if i == "price_product":
                                                         self.info_window.insert(END,
-                                                                                f"                                             Cena za (szt/kg): {data[i]} zł")
+                                                                                f"                                             Cena za (szt/kg): {string_format.places(data[i])} zł")
     def all_products_details(self):
 
         tenant = self.user_combobox.get()
@@ -161,16 +162,16 @@ class InfoWindow:
                                         if i == "quantity_product":
                                             if data[i] != "0":
                                                 self.info_window.insert(END,
-                                                                        f"                                              Ilość: {data[i]} szt.")
+                                                                        f"                                              Ilość: {string_format.places(data[i])} szt.")
                                     for i in data:
                                         if i == "weight_product":
                                             if data[i] != "0":
                                                 self.info_window.insert(END,
-                                                                        f"                                             Waga: {data[i]} kg")
+                                                                        f"                                             Waga: {string_format.places(data[i])} kg")
                                     for i in data:
                                         if i == "price_product":
                                             self.info_window.insert(END,
-                                                                    f"                                             Cena za (szt/kg): {data[i]} zł")
+                                                                    f"                                             Cena za (szt/kg): {string_format.places(data[i])} zł")
 
 class SumAll:
 

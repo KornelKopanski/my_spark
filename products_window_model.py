@@ -5,6 +5,7 @@ from save_to_dictionary import *
 from calculation_data import Calc
 from  product_windows import *
 import json
+import string_format
 
 all_shopping = {}
 number_x = []
@@ -152,12 +153,12 @@ class Products(Frame):
                                                 if item == "sum_shopping":
                                                     self.main_products_window.insert(END,
                                                                                      f"                                                                        "
-                                                                                     f"      Ilość sztuk: {str(data[item])}")
+                                                                                     f"      Ilość sztuk: {string_format.places(str(data[item]))}")
                                                 for info in data:
                                                     if info == "sum_price":
                                                         self.main_products_window.insert(END,
                                                                                          f"                                                                        "
-                                                                                         f"      Łączna cena(zł): {str(data[info])}")
+                                                                                         f"      Łączna cena(zł): {string_format.places(str(data[info]))}")
                             sum_shopping.done()
                         else:
                             showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
@@ -193,12 +194,12 @@ class Products(Frame):
                             if item == "sum_shopping":
                                 self.main_products_window.insert(END,
                                                                  f"                                                                        "
-                                                                 f"      Ilość sztuk: {str(data[item])}")
+                                                                 f"      Ilość sztuk: {string_format.places(str(data[item]))}")
                             for info in data:
                                 if info == "sum_price":
                                     self.main_products_window.insert(END,
                                                                      f"                                                                        "
-                                                                     f"      Łączna cena(zł): {str(data[info])}")
+                                                                     f"      Łączna cena(zł): {string_format.places(str(data[info]))}")
 
     def _log_out(self):
 
