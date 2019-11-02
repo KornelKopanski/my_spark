@@ -4,6 +4,7 @@ import string_format
 class Calc:
     data_quantity = {}
     all_shopping = {}
+    _weight = {}
 
     #  POMOC DO METOD LICZĄCYCH ŁĄCZNĄ CENĘ PRODUKTU
     user_price_info = {}
@@ -20,6 +21,7 @@ class Calc:
                 self.all_shopping[key] = value
 
         self.data_quantity.clear()
+        self._weight.clear()
         for user in self.all_shopping:
             for category in self.all_shopping[user]:
                 for product in self.all_shopping[user][category]:
@@ -33,6 +35,17 @@ class Calc:
                                         self.data_quantity[user][product] = [int(data[info])]
                                     else:
                                         self.data_quantity[user][product].append(int(data[info]))
+
+                            elif info == "weight_product":
+
+                                if user not in self._weight:
+                                    self._weight[user] = {product: [int(data[info])]}
+                                else:
+                                    if product not in self._weight[user]:
+                                        self._weight[user][product] = [int(data[info])]
+                                    else:
+                                        self._weight[user][product].append(int(data[info]))
+
 
     def assign(self):
 
