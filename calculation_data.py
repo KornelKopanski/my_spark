@@ -5,6 +5,7 @@ class Calc:
     data_quantity = {}
     all_shopping = {}
     _weight = {}
+    _weight_quantity = {}
 
     #  POMOC DO METOD LICZĄCYCH ŁĄCZNĄ CENĘ PRODUKTU
     user_price_info = {}
@@ -22,6 +23,7 @@ class Calc:
 
         self.data_quantity.clear()
         self._weight.clear()
+        self._weight_quantity.clear()
         for user in self.all_shopping:
             for category in self.all_shopping[user]:
                 for product in self.all_shopping[user][category]:
@@ -38,13 +40,41 @@ class Calc:
 
                             elif info == "weight_product":
 
-                                if user not in self._weight:
-                                    self._weight[user] = {product: [int(data[info])]}
+                                if user not in self._weight_quantity:
+                                    self._weight_quantity[user] = {product: [float(data[info])]}
                                 else:
-                                    if product not in self._weight[user]:
-                                        self._weight[user][product] = [int(data[info])]
+                                    if product not in self._weight_quantity[user]:
+                                        self._weight_quantity[user][product] = [float(data[info])]
                                     else:
-                                        self._weight[user][product].append(int(data[info]))
+                                        self._weight_quantity[user][product].append(float(data[info]))
+
+                                for index in data:
+                                    if index == "price_product":
+
+                                        sum_weight_product = float(data[index]) * float(data[info])
+
+                                        if user not in self._weight:
+                                            self._weight[user] = {product: [sum_weight_product]}
+                                        else:
+                                            if product not in self._weight[user]:
+                                                self._weight[user][product] = [sum_weight_product]
+                                            else:
+                                                self._weight[user][product].append(sum_weight_product)
+
+        # Sumowanie ceny na podstawie wagi.
+        for user in self._weight:
+            for product in self._weight[user]:
+                _all_sum = sum(self._weight[user][product])
+                for tenant in self.all_shopping:
+                    if tenant == user:
+                        for category in self.all_shopping[tenant]:
+                            for item in self.all_shopping[tenant][category]:
+                                if item == product:
+                                    for data in self.all_shopping[tenant][category][item]:
+                                        for i in data:
+                                            if i == "weight_sum_price":
+                                                data[i] += _all_sum
+
 
 
     def assign(self):
