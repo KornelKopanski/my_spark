@@ -73,7 +73,21 @@ class Calc:
                                     for data in self.all_shopping[tenant][category][item]:
                                         for i in data:
                                             if i == "weight_sum_price":
-                                                data[i] += _all_sum
+                                                data[i] = _all_sum
+
+        # Sumowanie ilości kg.
+        for user in self._weight_quantity:
+            for product in self._weight_quantity[user]:
+                 _all_sum = sum(self._weight_quantity[user][product])
+                 for tenant in self.all_shopping:
+                    if tenant == user:
+                        for category in self.all_shopping[tenant]:
+                            for item in self.all_shopping[tenant][category]:
+                                if item == product:
+                                    for data in self.all_shopping[tenant][category][item]:
+                                        for i in data:
+                                            if i == "weight_sum_quantity":
+                                                data[i] = _all_sum
 
 
 
