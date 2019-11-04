@@ -1,5 +1,6 @@
-import json
-import string_format
+
+from calc_all_sum import *
+
 
 class Calc:
     data_quantity = {}
@@ -89,8 +90,6 @@ class Calc:
                                             if i == "weight_sum_quantity":
                                                 data[i] = _all_sum
 
-
-
     def assign(self):
 
         for user in self.data_quantity:
@@ -112,6 +111,9 @@ class Calc:
 
         self.segregation_quan()
         self.assign()
+        calc_save = CalcAll()
+        calc_save.all_sum()
+
 
     # METODY LICZĄCE ŁĄCZNĄ CENĘ PRODUKTU
     def sort_the_data(self):
