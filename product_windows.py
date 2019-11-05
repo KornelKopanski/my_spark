@@ -198,15 +198,23 @@ class SumAll:
 
         self._read()
 
+
         for user in self._all_shopping:
-            self._sum_price_tenant[user] = {}
+            if user not in self._sum_price_tenant:
+                self._sum_price_tenant[user] = {}
+
+
+        for user in self._all_shopping:
             self._sum_price_tenant[user].setdefault("sum_price",0)
+            _work_list = []
             for category in self._all_shopping[user]:
                     for product in self._all_shopping[user][category]:
                         for data in self._all_shopping[user][category][product]:
                             for item in data:
-                                if item == "sum_price":
-                                    self._sum_price_tenant[user]["sum_price"] += data[item]
+                                if item == "all_sum_price":
+                                    _work_list.append(data[item])
+
+            self._sum_price_tenant[user]["sum_price"] = sum(_work_list)
 
         self._write()
 

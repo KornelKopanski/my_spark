@@ -1,5 +1,5 @@
 
-from calc_all_sum import *
+import json
 
 
 class Calc:
@@ -111,8 +111,6 @@ class Calc:
 
         self.segregation_quan()
         self.assign()
-        calc_save = CalcAll()
-        calc_save.all_sum()
 
 
     # METODY LICZĄCE ŁĄCZNĄ CENĘ PRODUKTU

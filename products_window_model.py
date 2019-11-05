@@ -4,6 +4,7 @@ from datetime import *
 from save_to_dictionary import *
 from calculation_data import Calc
 from  product_windows import *
+from calc_all_sum import CalcAll
 import json
 import string_format
 
@@ -163,6 +164,9 @@ class Products(Frame):
                                                             self.main_products_window.insert(END,
                                                                                              f"                                                                        "
                                                                                              f"      Łączna cena(zł): {string_format.places(str(data[info]))}")
+
+                                c = CalcAll()
+                                c.all_sum()
                                 sum_shopping.done()
                         else:
                             showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
