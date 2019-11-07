@@ -120,73 +120,87 @@ class Products(Frame):
             if price_product:
                 c = price_product.count(".")
                 if c<=1:
-                    if price_number.isdigit():
 
-                        if quantity_product != "0" or weight_product != "0":
+                    if price_product[0] != "-":
 
-                            if quantity_product != "0" and weight_product != "0":
-                                showinfo("Uwaga!"," Należy wprowadzić tylko JEDEN parametr (ilość lub waga)!")
-                            else:
+                        if price_number.isdigit():
 
-                                x_value = []
+                            if quantity_product[0] != "-" and weight_product[0] != "-":
 
-                                for tenant in all_shopping:
-                                    for cate in all_shopping[tenant]:
-                                        if cate != category_get:
-                                            if name_product in all_shopping[tenant][cate]:
-                                                x_value.clear()
-                                                x_value.append(1)
+                                if quantity_product.isdigit() and weight_product.isdigit():
 
-                                if x_value:
-                                    showinfo("Uwaga","Produkt o danej nazwie może występować tylko w jednej kategorii!"
-                                                     " Zmień nazwę produktu!")
+
+                                    if quantity_product != "0" or weight_product != "0":
+
+                                        if quantity_product != "0" and weight_product != "0":
+                                            showinfo("Uwaga!"," Należy wprowadzić tylko JEDEN parametr (ilość lub waga)!")
+                                        else:
+
+                                            x_value = []
+
+                                            for tenant in all_shopping:
+                                                for cate in all_shopping[tenant]:
+                                                    if cate != category_get:
+                                                        if name_product in all_shopping[tenant][cate]:
+                                                            x_value.clear()
+                                                            x_value.append(1)
+
+                                            if x_value:
+                                                showinfo("Uwaga","Produkt o danej nazwie może występować tylko w jednej kategorii!"
+                                                                 " Zmień nazwę produktu!")
+                                            else:
+
+
+                                                save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
+
+                                                with open("AccountOAll.json", "w")  as my_file:
+                                                    json.dump(all_shopping, my_file,indent=2)
+
+                                                calc = Calc()
+                                                calc.done()
+                                                calc.init_calc_price()
+                                                sum_shopping = SumAll()
+
+                                                with open("AccountOAll.json", "r")  as my_file:
+                                                    lista = json.load(my_file)
+
+                                                    for i in lista:
+                                                        key = i
+                                                        value = lista[i]
+                                                        all_shopping[key] = value
+
+                                                self.main_products_window.delete(0, END)
+                                                for user in all_shopping:
+                                                    self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
+                                                    for category_product in all_shopping[user]:
+                                                        self.main_products_window.insert(END, f"                                      {category_product}:")
+                                                        for product in all_shopping[user][category_product]:
+                                                            self.main_products_window.insert(END, f"                                                              {product}")
+                                                            for data in all_shopping[user][category_product][product]:
+                                                                for item in data:
+                                                                    if item == "sum_shopping":
+                                                                        self.main_products_window.insert(END,
+                                                                                                         f"                                                                        "
+                                                                                                         f"      Ilość sztuk: {string_format.places(str(data[item]))}")
+                                                                    for info in data:
+                                                                        if info == "sum_price":
+                                                                            self.main_products_window.insert(END,
+                                                                                                             f"                                                                        "
+                                                                                                             f"      Łączna cena(zł): {string_format.places(str(data[info]))}")
+
+                                                c = CalcAll()
+                                                c.all_sum()
+                                                sum_shopping.done()
+                                    else:
+                                        showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
                                 else:
-
-
-                                    save(all_shopping,category_get,name_product,quantity_product,weight_product,price_product,date_product)
-
-                                    with open("AccountOAll.json", "w")  as my_file:
-                                        json.dump(all_shopping, my_file,indent=2)
-
-                                    calc = Calc()
-                                    calc.done()
-                                    calc.init_calc_price()
-                                    sum_shopping = SumAll()
-
-                                    with open("AccountOAll.json", "r")  as my_file:
-                                        lista = json.load(my_file)
-
-                                        for i in lista:
-                                            key = i
-                                            value = lista[i]
-                                            all_shopping[key] = value
-
-                                    self.main_products_window.delete(0, END)
-                                    for user in all_shopping:
-                                        self.main_products_window.insert(END, f"Zakupy lokatora {user}:")
-                                        for category_product in all_shopping[user]:
-                                            self.main_products_window.insert(END, f"                                      {category_product}:")
-                                            for product in all_shopping[user][category_product]:
-                                                self.main_products_window.insert(END, f"                                                              {product}")
-                                                for data in all_shopping[user][category_product][product]:
-                                                    for item in data:
-                                                        if item == "sum_shopping":
-                                                            self.main_products_window.insert(END,
-                                                                                             f"                                                                        "
-                                                                                             f"      Ilość sztuk: {string_format.places(str(data[item]))}")
-                                                        for info in data:
-                                                            if info == "sum_price":
-                                                                self.main_products_window.insert(END,
-                                                                                                 f"                                                                        "
-                                                                                                 f"      Łączna cena(zł): {string_format.places(str(data[info]))}")
-
-                                    c = CalcAll()
-                                    c.all_sum()
-                                    sum_shopping.done()
+                                    showinfo("Uwaga!", "Złe znaki! Proszę wprowadzić liczbę!")
+                            else:
+                                showinfo("Uwaga", "Ilość lub waga nie może być ujemna!")
                         else:
-                            showinfo("Uwaga!", "Proszę wprowadzić ilość lub wagę!")
+                            showinfo("Uwaga!","Złe znaki! Proszę wprowadzić liczbę!")
                     else:
-                        showinfo("Uwaga!","Złe znaki! Proszę wprowadzić liczbę!")
+                        showinfo("Uwaga", "Cena nie może być ujemna!")
                 else:
                     showinfo("Uwaga!","Kropka lub przecinek może zostać użyte tylko raz!")
             else:
